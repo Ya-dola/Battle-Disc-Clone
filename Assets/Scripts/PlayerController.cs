@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         //     }
         // }
 
-        // Move the player ball according to the mouse when pressed
+        // Drag the Player accordingly when the mouse is pressed down
         Vector2 deltaMousePos = Vector2.zero;
 
         if (Input.GetMouseButton(0))
@@ -69,11 +69,7 @@ public class PlayerController : MonoBehaviour
                 lastMousePos = currentMousePos;
 
             deltaMousePos = currentMousePos - lastMousePos;
-
             lastMousePos = currentMousePos;
-
-            // Vector3 force = new Vector3(deltaMousePos.x, 0, deltaMousePos.y) * playerMoveForce;
-            // playerRigBody.AddForce(force);
 
             transform.position = new Vector3(
                     transform.position.x + deltaMousePos.x * playerMoveForce,

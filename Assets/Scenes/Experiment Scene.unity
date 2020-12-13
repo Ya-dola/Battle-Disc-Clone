@@ -160,10 +160,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8178933861927933619, guid: 740b5a39a6bc2a64bad769be0c840d70, type: 3}
-      propertyPath: playerMoveForce
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 9088069409758812824, guid: 740b5a39a6bc2a64bad769be0c840d70, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
