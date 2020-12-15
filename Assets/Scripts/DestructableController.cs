@@ -8,7 +8,7 @@ public class DestructableController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // To check if the player collided with the destructable
+        // To check if the disc collided with the destructable
         PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
 
         // TODO - Change it to destroy only when collides with the disc USE TAGS !!!

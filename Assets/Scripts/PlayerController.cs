@@ -80,5 +80,25 @@ public class PlayerController : MonoBehaviour
         else
             lastMousePos = Vector2.zero;
     }
+
+    // Late Update used mainly for Camera Calculations and Calculations that need to occur after movement has occured
+    // Occurs after physics is applied 
+    private void LateUpdate()
+    {
+        Vector3 playerOldPos = transform.position;
+
+        // To make the player not fall from the Arena through the Sides
+        if (transform.position.x < -GameManager.singleton.sideEdgeDistance)
+            playerOldPos.x = -GameManager.singleton.sideEdgeDistance;
+        else if (transform.position.x > GameManager.singleton.sideEdgeDistance)
+            playerOldPos.x = GameManager.singleton.sideEdgeDistance;
+
+            if (transform.position.z < GameManager.singleton.botEdgeDistance)
+            {
+                playerOldPos.z = GameManager.singleton.botEdgeDistance;
+            }
+
+        transform.position = playerOldPos;
+    }
 }
 
