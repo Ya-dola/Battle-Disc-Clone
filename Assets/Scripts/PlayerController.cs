@@ -87,17 +87,21 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 playerOldPos = transform.position;
 
-        // To make the player not fall from the Arena through the Sides
+        // To make the Player not fall from the Arena through the Sides
         if (transform.position.x < -GameManager.singleton.sideEdgeDistance)
             playerOldPos.x = -GameManager.singleton.sideEdgeDistance;
         else if (transform.position.x > GameManager.singleton.sideEdgeDistance)
             playerOldPos.x = GameManager.singleton.sideEdgeDistance;
 
-            if (transform.position.z < GameManager.singleton.botEdgeDistance)
-            {
-                playerOldPos.z = GameManager.singleton.botEdgeDistance;
-            }
+        // To make the Player not be able to leave the Arena through the Bottom
+        if (transform.position.z < -GameManager.singleton.topBotEdgeDistance)
+            playerOldPos.z = -GameManager.singleton.topBotEdgeDistance;
 
+        // To make the Player not be able to leave their half of the Arena
+        if (transform.position.z > -GameManager.singleton.topBotCenterDistance)
+            playerOldPos.z = -GameManager.singleton.topBotCenterDistance;
+
+        // To Update the Position of Player with the Constraints
         transform.position = playerOldPos;
     }
 }

@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Arena")]
     public float sideEdgeDistance;
-    public float botEdgeDistance;
-    public float topEdgeDistance;
+    public float topBotEdgeDistance;
+    public float topBotCenterDistance;
 
     [Header("Destructables")]
     public float destBrokenDelay;
