@@ -11,9 +11,17 @@ public class GameManager : MonoBehaviour
     // public bool GameWon { get; private set; }
     // public bool GameLost { get; private set; }
 
+    public bool DiscCaught { get; private set; }
+    public bool DiscCollidedOnce { get; private set; }
+
     [Header("Player")]
     [Range(0, 1)]
     public float playerDragSpeed;
+
+    [Header("Disc")]
+    // [Range(0, 100)]
+    public float discForce;
+    public float discBounceForce;
 
     [Header("Arena")]
     public float sideEdgeDistance;
@@ -22,6 +30,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Destructables")]
     public float destBrokenDelay;
+    public float destExplosionForce;
+    public float destExplosionRadius;
+    public float destExplosionUpwardsMod;
 
     void Awake()
     {
@@ -74,5 +85,15 @@ public class GameManager : MonoBehaviour
     public void EndGame(bool gameWon)
     {
         GameEnded = true;
+    }
+
+    public void setDiscCaught(bool status)
+    {
+        DiscCaught = status;
+    }
+
+    public void setDiscCollidedOnce(bool status)
+    {
+        DiscCollidedOnce = status;
     }
 }

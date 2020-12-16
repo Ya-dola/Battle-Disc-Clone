@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5231694449860771908}
   - component: {fileID: 4527858600501920411}
   - component: {fileID: 5688793042585827095}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3739035518955984121}
   - component: {fileID: 4261452204866508386}
   - component: {fileID: 5688793042160640719}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 5666742719494588032}
   - component: {fileID: 7509720774498025635}
   - component: {fileID: 5688793042496269163}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 5163864517420251896}
   - component: {fileID: 558849545048675682}
   - component: {fileID: 5688793043417825995}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 5210268320504358028}
   - component: {fileID: 2251720012792029733}
   - component: {fileID: 5688793041775744334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 7603020424338506379}
   - component: {fileID: 1967367560177643829}
   - component: {fileID: 5688793042757951222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 7943511342871945203}
   - component: {fileID: 4901325963238312687}
   - component: {fileID: 5688793042813833295}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,7 +848,7 @@ GameObject:
   - component: {fileID: 4722887318893148576}
   - component: {fileID: 6431927269422179780}
   - component: {fileID: 5688793041650391453}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -961,7 +961,7 @@ GameObject:
   - component: {fileID: 6901679632003149207}
   - component: {fileID: 2859093017455624534}
   - component: {fileID: 5688793043613639047}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 990660807641015413}
   - component: {fileID: 8578842735105216497}
   - component: {fileID: 5688793042630790124}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,7 +1187,7 @@ GameObject:
   - component: {fileID: 6257892020712523072}
   - component: {fileID: 2104941648546105003}
   - component: {fileID: 5688793043741337276}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1300,7 @@ GameObject:
   - component: {fileID: 102275770114468712}
   - component: {fileID: 3747047260849378566}
   - component: {fileID: 5688793043260868692}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1413,7 +1413,7 @@ GameObject:
   - component: {fileID: 1112585876209923933}
   - component: {fileID: 7807921265607780580}
   - component: {fileID: 5688793043015398298}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1526,7 +1526,7 @@ GameObject:
   - component: {fileID: 3430283173486087903}
   - component: {fileID: 2822796968992036303}
   - component: {fileID: 5688793042897095258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: smallDestructable_cell.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}

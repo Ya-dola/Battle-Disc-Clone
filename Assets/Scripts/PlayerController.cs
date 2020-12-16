@@ -7,10 +7,11 @@ public class PlayerController : MonoBehaviour
     // private Touch screenTouch;
     // public float playerMoveSpeed;
 
-
     private Rigidbody playerRigBody;
     // private Animator playerAnimator;
     private Vector2 lastMousePos;
+
+    public GameObject Disc;
 
     void Awake()
     {
@@ -24,6 +25,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    // Fixed Update used mainly for Physics Calculations
+    void FixedUpdate()
+    {
+        // LaunchDisc();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -35,7 +42,6 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         ConstraintPosition(gameObject, "Player");
-
     }
 
     private void DragPlayer()
@@ -134,5 +140,30 @@ public class PlayerController : MonoBehaviour
 
         goCharacter.transform.position = goCharacterOldPos;
     }
-}
 
+    private void LaunchDisc()
+    {
+        // To only run when the disc is caught and has already collided once with something
+        if (GameManager.singleton.DiscCaught)
+        {
+            // return;
+
+            // If the Mouse is not being pressed down
+            // if (!Input.GetMouseButton(0))
+            // {
+
+            // Disc.GetComponent<Rigidbody>().AddForce((transform.position - Disc.transform.position) *
+            //                                         GameManager.singleton.discForce, ForceMode.Impulse);
+
+            if (!Input.GetMouseButtonDown(0))
+                Disc.GetComponent<Rigidbody>().velocity = (transform.position - Disc.transform.position) *
+                                                            GameManager.singleton.discForce;
+
+            Debug.Log("Disc Added Force");
+
+            GameManager.singleton.setDiscCaught(false);
+
+            // }
+        }
+    }
+}
