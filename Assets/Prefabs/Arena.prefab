@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6380790976056875056, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
+      propertyPath: m_TagString
+      value: Edge
+      objectReference: {fileID: 0}
     - target: {fileID: -6154743376530922009, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -119,9 +123,21 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1092333963683136201, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
+      propertyPath: m_TagString
+      value: Edge
+      objectReference: {fileID: 0}
+    - target: {fileID: -812698070133517742, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
+      propertyPath: m_TagString
+      value: Edge
+      objectReference: {fileID: 0}
     - target: {fileID: -352593472797739886, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 474305294669632068, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
+      propertyPath: m_TagString
+      value: Edge
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
       propertyPath: m_Name
@@ -138,6 +154,14 @@ PrefabInstance:
     - target: {fileID: 2049983629531052604, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
       propertyPath: m_Convex
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2585947348724639981, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
+      propertyPath: m_TagString
+      value: Edge
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970653769068529504, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
+      propertyPath: m_TagString
+      value: Edge
       objectReference: {fileID: 0}
     - target: {fileID: 3407445962262176468, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
       propertyPath: m_Convex
@@ -207,6 +231,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7718164073719564129, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
+      propertyPath: m_TagString
+      value: Edge
+      objectReference: {fileID: 0}
     - target: {fileID: 8291168371601718727, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -218,6 +246,10 @@ PrefabInstance:
     - target: {fileID: 8442510506162454399, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158563862361649891, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
+      propertyPath: m_TagString
+      value: Edge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7e51ce630945b54fa272b9f9aefbc1d, type: 3}
