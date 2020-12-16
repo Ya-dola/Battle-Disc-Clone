@@ -85,24 +85,50 @@ public class PlayerController : MonoBehaviour
     // Occurs after physics is applied 
     private void LateUpdate()
     {
-        Vector3 playerOldPos = transform.position;
+        ConstraintPosition(gameObject, "Player");
 
-        // To make the Player not fall from the Arena through the Sides
-        if (transform.position.x < -GameManager.singleton.sideEdgeDistance)
-            playerOldPos.x = -GameManager.singleton.sideEdgeDistance;
-        else if (transform.position.x > GameManager.singleton.sideEdgeDistance)
-            playerOldPos.x = GameManager.singleton.sideEdgeDistance;
+        
+    }
 
-        // To make the Player not be able to leave the Arena through the Bottom
-        if (transform.position.z < -GameManager.singleton.topBotEdgeDistance)
-            playerOldPos.z = -GameManager.singleton.topBotEdgeDistance;
+    // To Update the Position of Character with the Constraints
+    private void ConstraintPosition(GameObject goCharacter, string character)
+    {
+        Vector3 goCharacterOldPos = goCharacter.transform.position;
 
-        // To make the Player not be able to leave their half of the Arena
-        if (transform.position.z > -GameManager.singleton.topBotCenterDistance)
-            playerOldPos.z = -GameManager.singleton.topBotCenterDistance;
+        if (character == "Player")
+        {
+            // To make the Character not fall from the Arena through the Sides
+            if (transform.position.x < -GameManager.singleton.sideEdgeDistance)
+                goCharacterOldPos.x = -GameManager.singleton.sideEdgeDistance;
+            else if (transform.position.x > GameManager.singleton.sideEdgeDistance)
+                goCharacterOldPos.x = GameManager.singleton.sideEdgeDistance;
 
-        // To Update the Position of Player with the Constraints
-        transform.position = playerOldPos;
+            // To make the Character not be able to leave the Arena through the Bottom
+            if (transform.position.z < -GameManager.singleton.topBotEdgeDistance)
+                goCharacterOldPos.z = -GameManager.singleton.topBotEdgeDistance;
+
+            // To make the Character not be able to leave their half of the Arena
+            if (transform.position.z > -GameManager.singleton.topBotCenterDistance)
+                goCharacterOldPos.z = -GameManager.singleton.topBotCenterDistance;
+        }
+        else
+        {
+            // To make the Character not fall from the Arena through the Sides
+            if (transform.position.x < -GameManager.singleton.sideEdgeDistance)
+                goCharacterOldPos.x = -GameManager.singleton.sideEdgeDistance;
+            else if (transform.position.x > GameManager.singleton.sideEdgeDistance)
+                goCharacterOldPos.x = GameManager.singleton.sideEdgeDistance;
+
+            // To make the Character not be able to leave the Arena through the Top
+            if (transform.position.z > GameManager.singleton.topBotEdgeDistance)
+                goCharacterOldPos.z = GameManager.singleton.topBotEdgeDistance;
+
+            // To make the Character not be able to leave their half of the Arena
+            if (transform.position.z < GameManager.singleton.topBotCenterDistance)
+                goCharacterOldPos.z = GameManager.singleton.topBotCenterDistance;
+        }
+
+        goCharacter.transform.position = goCharacterOldPos;
     }
 }
 
