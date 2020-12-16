@@ -9,11 +9,14 @@ public class DestructableController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // To check if the disc collided with the destructable
-        PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+        // PlayerController playerController = collision.gameObject.GetComponent<PlayerController>();
+
+        // if (!playerController)
+        //     return;
 
         // TODO - Change it to destroy only when collides with the disc USE TAGS !!!
-
-        if (!playerController)
+        // if (collision.gameObject.tag != "Disc")
+        if (collision.gameObject.tag != "Player")
             return;
 
         GameObject destBroken = Instantiate(DestBrokenPrefab, transform.position, transform.rotation);
@@ -24,6 +27,7 @@ public class DestructableController : MonoBehaviour
         }
 
         Destroy(gameObject);
+
 
         Destroy(destBroken, GameManager.singleton.destBrokenDelay);
     }

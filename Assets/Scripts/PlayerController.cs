@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // private Touch screenTouch;
     // public float playerMoveSpeed;
-    public float playerMoveForce;
+
 
     private Rigidbody playerRigBody;
     // private Animator playerAnimator;
@@ -26,6 +26,19 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        DragPlayer();
+    }
+
+    // Late Update used mainly for Camera Calculations and Calculations that need to occur after movement has occured
+    // Occurs after physics is applied 
+    private void LateUpdate()
+    {
+        ConstraintPosition(gameObject, "Player");
+
+    }
+
+    private void DragPlayer()
     {
         // float planeY = 0;
         // Transform draggingObject = transform;
@@ -72,22 +85,13 @@ public class PlayerController : MonoBehaviour
             lastMousePos = currentMousePos;
 
             transform.position = new Vector3(
-                    transform.position.x + deltaMousePos.x * playerMoveForce,
+                    transform.position.x + deltaMousePos.x * GameManager.singleton.playerDragSpeed,
                     transform.position.y,
-                    transform.position.z + deltaMousePos.y * playerMoveForce
+                    transform.position.z + deltaMousePos.y * GameManager.singleton.playerDragSpeed
                 );
         }
         else
             lastMousePos = Vector2.zero;
-    }
-
-    // Late Update used mainly for Camera Calculations and Calculations that need to occur after movement has occured
-    // Occurs after physics is applied 
-    private void LateUpdate()
-    {
-        ConstraintPosition(gameObject, "Player");
-
-        
     }
 
     // To Update the Position of Character with the Constraints

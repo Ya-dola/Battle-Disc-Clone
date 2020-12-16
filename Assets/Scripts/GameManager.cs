@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     // public bool GameWon { get; private set; }
     // public bool GameLost { get; private set; }
 
+    [Header("Player")]
+    [Range(0, 1)]
+    public float playerDragSpeed;
+
     [Header("Arena")]
     public float sideEdgeDistance;
     public float topBotEdgeDistance;
