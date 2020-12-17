@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     // Fixed Update used mainly for Physics Calculations
     void FixedUpdate()
     {
-        // LaunchDisc();
+        LaunchDisc();
     }
 
     // Update is called once per frame
@@ -79,8 +79,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             // Signals the Game has started and only runs it once if the game has already started
-            // if (!GameManager.singleton.GameStarted)
-            //     GameManager.singleton.StartGame();
+            if (!GameManager.singleton.GameStarted)
+                GameManager.singleton.StartGame();
 
             Vector2 currentMousePos = Input.mousePosition;
 
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
     private void LaunchDisc()
     {
         // To only run when the disc is caught and has already collided once with something
-        if (GameManager.singleton.DiscCaught)
+        if (GameManager.singleton.GameStarted)
         {
             // return;
 
@@ -155,15 +155,27 @@ public class PlayerController : MonoBehaviour
             // Disc.GetComponent<Rigidbody>().AddForce((transform.position - Disc.transform.position) *
             //                                         GameManager.singleton.discForce, ForceMode.Impulse);
 
-            if (!Input.GetMouseButtonDown(0))
-                Disc.GetComponent<Rigidbody>().velocity = (transform.position - Disc.transform.position) *
+            if (Input.GetKey(KeyCode.W) && GameManager.singleton.DiscCaught)
+            {
+                Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - Disc.transform.position) *
                                                             GameManager.singleton.discForce;
 
-            Debug.Log("Disc Added Force");
+                Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
-            GameManager.singleton.setDiscCaught(false);
+                GameManager.singleton.setDiscCaught(false);
+                GameManager.singleton.setDiscCollidedOnce(false);
+            }
+        }
+    }
 
-            // }
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.Equals(Disc))
+        {
+            GameManager.singleton.setDiscCaught(true);
+            GameManager.singleton.setDiscCollidedOnce(false);
+
+            Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class GameManager : MonoBehaviour
     public float destExplosionRadius;
     public float destExplosionUpwardsMod;
 
+    [Header("Debug")]
+    public TextMeshProUGUI debugText;
+
     void Awake()
     {
         // Creates a Single Instance of the game manager through out the entire game
@@ -52,12 +56,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        debugText.text = "Game Started: " + GameStarted + "\n" +
+                         "Disc Caught: " + DiscCaught + "\n" +
+                         "Disc Collided Once: " + DiscCollidedOnce + "\n";
     }
 
     public void StartGame()
     {
         GameStarted = true;
+
+        // Starting Conditions of the Disc
+        setDiscCaught(true);
+        setDiscCollidedOnce(true);
     }
 
     public void PauseOrResumeGame()
