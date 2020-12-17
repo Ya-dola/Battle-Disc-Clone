@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     [Header("Disc")]
     // [Range(0, 100)]
     public float discForce;
-    public float discBounceForce;
 
     [Header("Arena")]
     public float sideEdgeDistance;

@@ -32,16 +32,7 @@ public class DiscController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // To check if the disc collided with the Player
-        if (collision.gameObject.tag == "Player" &&
-            GameManager.singleton.DiscCollidedOnce)
-        {
-            // GameManager.singleton.setDiscCaught(true);
-            // GameManager.singleton.setDiscCollidedOnce(false);
-
-            // discRigBody.velocity = Vector3.zero;
-        }
-        else
+        if (collision.gameObject.tag != "Player")
         {
             // discRigBody.velocity = Vector3.Reflect(lastDiscVelocity.normalized, collision.contacts[0].normal) *
             //                         Mathf.Max(lastDiscVelocity.magnitude, GameManager.singleton.discBounceForce);
@@ -49,8 +40,9 @@ public class DiscController : MonoBehaviour
             // discRigBody.velocity = Vector3.Reflect(lastDiscVelocity.normalized, collision.GetContact(0).normal) *
             //                         Mathf.Max(lastDiscVelocity.magnitude, GameManager.singleton.discBounceForce);
 
+            // To Achieve the Bounce Effect by the Disc
             discRigBody.velocity = Vector3.Reflect(lastDiscVelocity.normalized, collision.GetContact(0).normal) *
-                                   GameManager.singleton.discBounceForce;
+                                   GameManager.singleton.discForce;
         }
     }
 }
