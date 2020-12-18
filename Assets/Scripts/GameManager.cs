@@ -19,11 +19,16 @@ public class GameManager : MonoBehaviour
     [Header("Player")]
     [Range(0, 1)]
     public float playerDragSpeed;
+    public Vector3 lastPlayerPos { get; set; }
 
     [Header("Disc")]
     // [Range(0, 100)]
     public float discForce;
     public float discLerpMoveTime;
+    public int bounceRandIterator;
+    [Range(0, 1)]
+    public float bounceBias;
+    public int bounceCount { get; set; }
 
     [Range(0.4f, 1f)]
     public float discRepositionZDistance;
@@ -63,7 +68,8 @@ public class GameManager : MonoBehaviour
         debugText.text = "Game Started: " + GameStarted + "\n" +
                          "Disc Caught: " + DiscCaught + "\n" +
                          "Disc Collided Once: " + DiscCollidedOnce + "\n" +
-                         "Reposition Disc: " + RepositionDisc + "\n";
+                         "Reposition Disc: " + RepositionDisc + "\n" +
+                         "Bounce Count: " + bounceCount + "\n";
     }
 
     public void StartGame()

@@ -6,6 +6,7 @@ public class DiscController : MonoBehaviour
 {
     private Rigidbody discRigBody;
     private Vector3 lastDiscVelocity;
+    private Vector3 discReflection;
 
     void Awake()
     {
@@ -34,6 +35,10 @@ public class DiscController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // To work only when the Game has started
+        if (!GameManager.singleton.GameStarted)
+            return;
+
         if (collision.gameObject.tag != "Player")
         {
             // discRigBody.velocity = Vector3.Reflect(lastDiscVelocity.normalized, collision.contacts[0].normal) *
@@ -43,8 +48,22 @@ public class DiscController : MonoBehaviour
             //                         Mathf.Max(lastDiscVelocity.magnitude, GameManager.singleton.discBounceForce);
 
             // To Achieve the Bounce Effect by the Disc
-            discRigBody.velocity = Vector3.Reflect(lastDiscVelocity.normalized, collision.GetContact(0).normal) *
-                                   GameManager.singleton.discForce;
+            GameManager.singleton.bounceCount++;
+
+            discReflection = Vector3.Reflect(lastDiscVelocity.normalized, collision.GetContact(0).normal);
+
+            // To Randomize the bounce every 'X' number of bounces where 'X' = 'bounceRandIterator'
+            if (GameManager.singleton.bounceCount % GameManager.singleton.bounceRandIterator == 0)
+            {
+                discReflection = Vector3.Normalize(
+                                    Vector3.Lerp(
+                                        Vector3.Reflect(lastDiscVelocity.normalized, collision.GetContact(0).normal),
+                                            // Direction of the Last Position where the Player and the Disc collided
+                                            GameManager.singleton.lastPlayerPos.normalized - transform.position.normalized,
+                                            GameManager.singleton.bounceBias));
+            }
+
+            discRigBody.velocity = discReflection * GameManager.singleton.discForce;
         }
     }
 }

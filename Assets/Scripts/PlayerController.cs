@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public GameObject Disc;
 
     private Vector3 discRepositionedPos;
-    private Vector3 lastPlayerPos;
 
     void Awake()
     {
@@ -168,6 +167,7 @@ public class PlayerController : MonoBehaviour
             GameManager.singleton.setDiscCaught(false);
             GameManager.singleton.setDiscCollidedOnce(false);
             GameManager.singleton.setRepositionDisc(false);
+            GameManager.singleton.bounceCount = 0;
         }
     }
 
@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
             Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
             // To reposition the disc on collision
-            lastPlayerPos = transform.position;
+            GameManager.singleton.lastPlayerPos = transform.position;
 
             if (GameManager.singleton.DiscCollidedOnce)
             {
@@ -192,12 +192,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // TODO - Make it reposition smoothly and allow movement after collision
+    // TODO - Fix Bug of Destroying Destructable when repositioning
     private void RepositionDisc()
     {
-        discRepositionedPos = new Vector3(lastPlayerPos.x,
-                                          lastPlayerPos.y,
-                                          lastPlayerPos.z - GameManager.singleton.discRepositionZDistance);
+        discRepositionedPos = new Vector3(GameManager.singleton.lastPlayerPos.x,
+                                          GameManager.singleton.lastPlayerPos.y,
+                                          GameManager.singleton.lastPlayerPos.z - GameManager.singleton.discRepositionZDistance);
 
         // To reposition the Disc behind the Player when Caught
         Disc.transform.position = Vector3.Lerp(Disc.transform.position,

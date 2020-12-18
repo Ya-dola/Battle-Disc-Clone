@@ -226,6 +226,8 @@ MonoBehaviour:
   playerDragSpeed: 0.025
   discForce: 18
   discLerpMoveTime: 4
+  bounceRandIterator: 4
+  bounceBias: 1
   discRepositionZDistance: 1
   sideEdgeDistance: 5
   topBotEdgeDistance: 8.25
