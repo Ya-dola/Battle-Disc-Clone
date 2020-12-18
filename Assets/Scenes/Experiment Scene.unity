@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDragSpeed: 0.025
   discForce: 18
-  discLerpMoveTime: 10
+  discLerpMoveTime: 4
   discRepositionZDistance: 1
   sideEdgeDistance: 5
   topBotEdgeDistance: 8.25
