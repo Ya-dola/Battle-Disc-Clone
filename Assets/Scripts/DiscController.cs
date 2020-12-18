@@ -21,11 +21,13 @@ public class DiscController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // To get the last velocity of the disc before a collision
         lastDiscVelocity = discRigBody.velocity;
     }
 
     void LateUpdate()
     {
+        // To Change the layer of the disc to a layer which collides with the player
         if (GameManager.singleton.DiscCollidedOnce)
             gameObject.layer = LayerMask.NameToLayer("Disc");
     }

@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Disc;
 
+    private Vector3 discRepositionedPos;
+
     void Awake()
     {
         playerRigBody = GetComponent<Rigidbody>();
@@ -37,6 +39,10 @@ public class PlayerController : MonoBehaviour
         DragPlayer();
 
         LaunchDisc();
+
+        // To reposition the Disc behind the Player when Caught
+        if (GameManager.singleton.RepositionDisc)
+            RepositionDisc();
     }
 
     // Late Update used mainly for Camera Calculations and Calculations that need to occur after movement has occured
@@ -157,8 +163,10 @@ public class PlayerController : MonoBehaviour
 
             Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
+            // To reset disc conditions
             GameManager.singleton.setDiscCaught(false);
             GameManager.singleton.setDiscCollidedOnce(false);
+            GameManager.singleton.setRepositionDisc(false);
         }
     }
 
@@ -171,6 +179,29 @@ public class PlayerController : MonoBehaviour
 
             // To Stop the Disc on Collision with the Player
             Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+            if (GameManager.singleton.DiscCollidedOnce)
+            {
+                GameManager.singleton.setRepositionDisc(true);
+                GameManager.singleton.setDiscCollidedOnce(false);
+            }
+
         }
+    }
+
+    private void RepositionDisc()
+    {
+        discRepositionedPos = new Vector3(transform.position.x,
+                                          transform.position.y,
+                                          transform.position.z - GameManager.singleton.discRepositionZDistance);
+
+        // To reposition the Disc behind the Player when Caught
+        Disc.transform.position = Vector3.Lerp(Disc.transform.position,
+                                                discRepositionedPos,
+                                                GameManager.singleton.discLerpMoveTime);
+
+        // To indicate the disc has repositioned
+        if (Disc.transform.position == discRepositionedPos)
+            GameManager.singleton.setRepositionDisc(false);
     }
 }

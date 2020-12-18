@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public bool DiscCaught { get; private set; }
     public bool DiscCollidedOnce { get; private set; }
+    public bool RepositionDisc { get; private set; }
 
     [Header("Player")]
     [Range(0, 1)]
@@ -22,6 +23,10 @@ public class GameManager : MonoBehaviour
     [Header("Disc")]
     // [Range(0, 100)]
     public float discForce;
+    public float discLerpMoveTime;
+
+    [Range(0.4f, 1f)]
+    public float discRepositionZDistance;
 
     [Header("Arena")]
     public float sideEdgeDistance;
@@ -57,7 +62,8 @@ public class GameManager : MonoBehaviour
     {
         debugText.text = "Game Started: " + GameStarted + "\n" +
                          "Disc Caught: " + DiscCaught + "\n" +
-                         "Disc Collided Once: " + DiscCollidedOnce + "\n";
+                         "Disc Collided Once: " + DiscCollidedOnce + "\n" +
+                         "Reposition Disc: " + RepositionDisc + "\n";
     }
 
     public void StartGame()
@@ -66,7 +72,7 @@ public class GameManager : MonoBehaviour
 
         // Starting Conditions of the Disc
         setDiscCaught(true);
-        setDiscCollidedOnce(true);
+        setDiscCollidedOnce(false);
     }
 
     public void PauseOrResumeGame()
@@ -96,6 +102,7 @@ public class GameManager : MonoBehaviour
         GameEnded = true;
     }
 
+    // Setters
     public void setDiscCaught(bool status)
     {
         DiscCaught = status;
@@ -104,5 +111,10 @@ public class GameManager : MonoBehaviour
     public void setDiscCollidedOnce(bool status)
     {
         DiscCollidedOnce = status;
+    }
+
+    public void setRepositionDisc(bool status)
+    {
+        RepositionDisc = status;
     }
 }
