@@ -1017,6 +1017,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb621540505b3c44bfbb4aceac858f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1521933884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9088069409758812830, guid: 740b5a39a6bc2a64bad769be0c840d70, type: 3}
+  m_PrefabInstance: {fileID: 1553161154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1537815103 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1789682681149660677, guid: 9b90ae52c2e350645978a9848e97f2fc, type: 3}
@@ -1042,6 +1047,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8178933861927933619, guid: 740b5a39a6bc2a64bad769be0c840d70, type: 3}
+      propertyPath: Disc
+      value: 
+      objectReference: {fileID: 641194749}
+    - target: {fileID: 8178933861927933619, guid: 740b5a39a6bc2a64bad769be0c840d70, type: 3}
+      propertyPath: LaunchIndicator
+      value: 
+      objectReference: {fileID: 1709722870}
+    - target: {fileID: 8906289582268474583, guid: 740b5a39a6bc2a64bad769be0c840d70, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3dda6763b6e67604a831f82bf077fbc6, type: 2}
+    - target: {fileID: 8906289583430229883, guid: 740b5a39a6bc2a64bad769be0c840d70, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1521933884}
+    - target: {fileID: 8906289583430229883, guid: 740b5a39a6bc2a64bad769be0c840d70, type: 3}
       propertyPath: Disc
       value: 
       objectReference: {fileID: 641194749}
@@ -1406,6 +1427,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3553366773119789039, guid: 1438d7228c70c5c44a2733a620286be8, type: 3}
   m_PrefabInstance: {fileID: 1670690737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1709722870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8906289583430229877, guid: 740b5a39a6bc2a64bad769be0c840d70, type: 3}
+  m_PrefabInstance: {fileID: 1553161154}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1745468271
 PrefabInstance:

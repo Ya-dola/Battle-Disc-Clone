@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastMousePos;
 
     public GameObject Disc;
-
+    public GameObject LaunchIndicator;
     private Vector3 discRepositionedPos;
 
     void Awake()
@@ -168,6 +168,7 @@ public class PlayerController : MonoBehaviour
             GameManager.singleton.setDiscCollidedOnce(false);
             GameManager.singleton.setRepositionDisc(false);
             GameManager.singleton.bounceCount = 0;
+            LaunchIndicator.gameObject.SetActive(false);
         }
     }
 
@@ -177,6 +178,7 @@ public class PlayerController : MonoBehaviour
         if (collider.gameObject.Equals(Disc))
         {
             GameManager.singleton.setDiscCaught(true);
+            LaunchIndicator.gameObject.SetActive(true);
 
             // To Stop the Disc on Collision with the Player
             Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
