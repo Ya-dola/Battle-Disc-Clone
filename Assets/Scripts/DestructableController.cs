@@ -10,7 +10,6 @@ public class DestructableController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // To check if the disc collided with the destructable
-        // if (collision.gameObject.tag != "Disc")
         if (!collision.gameObject.Equals(Disc))
             return;
 
