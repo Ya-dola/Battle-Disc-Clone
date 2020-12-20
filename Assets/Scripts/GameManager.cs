@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
     public float destExplosionRadius;
     public float destExplosionUpwardsMod;
 
+    [Header("Materials")]
+    public Material playerMaterial;
+    public Material enemyMaterial;
+
     [Header("Debug")]
     public TextMeshProUGUI debugText;
 
@@ -59,7 +63,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        // To Assign the Game Object's Materials according to their tag
+        AssignGameObjMaterials();
     }
 
     // Update is called once per frame
@@ -77,8 +82,8 @@ public class GameManager : MonoBehaviour
         GameStarted = true;
 
         // Starting Conditions of the Disc
-        setDiscCaught(true);
-        setDiscCollidedOnce(false);
+        SetDiscCaught(true);
+        SetDiscCollidedOnce(false);
     }
 
     public void PauseOrResumeGame()
@@ -108,18 +113,27 @@ public class GameManager : MonoBehaviour
         GameEnded = true;
     }
 
+    private void AssignGameObjMaterials()
+    {
+        foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("Player Dest"))
+            gameObj.GetComponent<Renderer>().material = playerMaterial;
+
+        foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("Enemy Dest"))
+            gameObj.GetComponent<Renderer>().material = enemyMaterial;
+    }
+
     // Setters
-    public void setDiscCaught(bool status)
+    public void SetDiscCaught(bool status)
     {
         DiscCaught = status;
     }
 
-    public void setDiscCollidedOnce(bool status)
+    public void SetDiscCollidedOnce(bool status)
     {
         DiscCollidedOnce = status;
     }
 
-    public void setRepositionDisc(bool status)
+    public void SetRepositionDisc(bool status)
     {
         RepositionDisc = status;
     }

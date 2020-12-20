@@ -5,9 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Edge
-  - Disc
-  - Destructable
-  - Destructable Broken
+  - Player Dest
+  - Enemy Dest
+  - Player Disc
+  - Enemy Disc
   layers:
   - Default
   - TransparentFX

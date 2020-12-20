@@ -164,9 +164,9 @@ public class PlayerController : MonoBehaviour
             Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
             // To reset disc conditions
-            GameManager.singleton.setDiscCaught(false);
-            GameManager.singleton.setDiscCollidedOnce(false);
-            GameManager.singleton.setRepositionDisc(false);
+            GameManager.singleton.SetDiscCaught(false);
+            GameManager.singleton.SetDiscCollidedOnce(false);
+            GameManager.singleton.SetRepositionDisc(false);
             GameManager.singleton.bounceCount = 0;
             LaunchIndicator.gameObject.SetActive(false);
         }
@@ -177,19 +177,22 @@ public class PlayerController : MonoBehaviour
         // Catching the Disc
         if (collider.gameObject.Equals(Disc))
         {
-            GameManager.singleton.setDiscCaught(true);
+            GameManager.singleton.SetDiscCaught(true);
             LaunchIndicator.gameObject.SetActive(true);
 
             // To Stop the Disc on Collision with the Player
             Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+            // To indicate that the disc was last caught by the player
+            Disc.tag = "Player Disc";
 
             // To reposition the disc on collision
             GameManager.singleton.lastPlayerPos = transform.position;
 
             if (GameManager.singleton.DiscCollidedOnce)
             {
-                GameManager.singleton.setRepositionDisc(true);
-                GameManager.singleton.setDiscCollidedOnce(false);
+                GameManager.singleton.SetRepositionDisc(true);
+                GameManager.singleton.SetDiscCollidedOnce(false);
             }
         }
     }
@@ -208,6 +211,6 @@ public class PlayerController : MonoBehaviour
 
         // To indicate the disc has repositioned
         if (Disc.transform.position == discRepositionedPos)
-            GameManager.singleton.setRepositionDisc(false);
+            GameManager.singleton.SetRepositionDisc(false);
     }
 }

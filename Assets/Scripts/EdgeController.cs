@@ -23,7 +23,7 @@ public class EdgeController : MonoBehaviour
             return;
 
         if (!GameManager.singleton.DiscCollidedOnce)
-            GameManager.singleton.setDiscCollidedOnce(true);
+            GameManager.singleton.SetDiscCollidedOnce(true);
 
         // Debug.Log("Disc Collided with Edge");
     }
