@@ -9,6 +9,10 @@ TagManager:
   - Enemy Dest
   - Player Disc
   - Enemy Disc
+  - Destructable
+  - Destructable Broken
+  - Disc
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -22,8 +26,8 @@ TagManager:
   - Destructable Broken
   - Disc Launched
   - Player
-  - 
-  - 
+  - Ground
+  - Edge
   - 
   - 
   - 

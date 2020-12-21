@@ -16,14 +16,19 @@ public class GameManager : MonoBehaviour
     public bool DiscCollidedOnce { get; private set; }
     public bool RepositionDisc { get; private set; }
 
+    public Vector3 lastEnemyPos { get; set; }
+
     [Header("Player")]
     [Range(0, 1)]
     public float playerDragSpeed;
     public Vector3 lastPlayerPos { get; set; }
 
+    [Header("Enemy")]
+    public float enemyPositionRadius;
+
     [Header("Disc")]
     // [Range(0, 100)]
-    public float discForce;
+    public float discSpeed;
     public float discLerpMoveTime;
     public int bounceRandIterator;
     [Range(0, 1)]
@@ -46,7 +51,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Materials")]
     public Material playerMaterial;
-    public Material enemyMaterial;
+    public Material[] enemyMaterials;
+    private Material enemyMaterial;
 
     [Header("Debug")]
     public TextMeshProUGUI debugText;
@@ -115,11 +121,17 @@ public class GameManager : MonoBehaviour
 
     private void AssignGameObjMaterials()
     {
+        // To choose the enemy material for the round
+        enemyMaterial = enemyMaterials[Random.Range(0, enemyMaterials.Length)];
+
         foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("Player Dest"))
             gameObj.GetComponent<Renderer>().material = playerMaterial;
 
         foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("Enemy Dest"))
             gameObj.GetComponent<Renderer>().material = enemyMaterial;
+
+        foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("Enemy"))
+            gameObj.GetComponentInChildren<Renderer>().material = enemyMaterial;
     }
 
     // Setters

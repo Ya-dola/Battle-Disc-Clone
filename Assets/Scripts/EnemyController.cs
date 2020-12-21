@@ -1,30 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    // private Touch screenTouch;
-    // public float playerMoveSpeed;
-
-    // private Rigidbody playerRigBody;
-    // private Animator playerAnimator;
-    private Vector2 lastMousePos;
-
+    // private Animator enemyAnimator;
     public GameObject Disc;
-    public GameObject LaunchIndicator;
     private Vector3 discRepositionedPos;
+    private NavMeshAgent enemyNavMeshAgent;
+
+    [Header("Enemy AI Movement")]
+    public GameObject[] enemyPositions;
+
+    private int positionIndex;
 
     void Awake()
     {
-        // playerRigBody = GetComponent<Rigidbody>();
-        // playerAnimator = GetComponentInChildren<Animator>();
+        // enemyAnimator = GetComponentInChildren<Animator>();
+        enemyNavMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        positionIndex = 0;
     }
 
     // Fixed Update used mainly for Physics Calculations
@@ -36,76 +36,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DragPlayer();
+        MoveEnemy();
 
-        LaunchDisc();
+        // LaunchDisc();
 
-        // To reposition the Disc behind the Player when Caught
-        if (GameManager.singleton.RepositionDisc)
-            RepositionDisc();
+        // // To reposition the Disc behind the Enemy when Caught
+        // if (GameManager.singleton.RepositionDisc)
+        //     RepositionDisc();
     }
 
     // Late Update used mainly for Camera Calculations and Calculations that need to occur after movement has occured
     // Occurs after physics is applied 
     private void LateUpdate()
     {
-        ConstraintPosition(gameObject, "Player");
-    }
-
-    private void DragPlayer()
-    {
-        // float planeY = 0;
-        // Transform draggingObject = transform;
-
-        // Plane plane = new Plane(Vector3.up, Vector3.up * planeY); // ground plane
-
-        // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        // float distance; // the distance from the ray origin to the ray intersection of the plane
-        // if (plane.Raycast(ray, out distance))
-        // {
-        //     draggingObject.position = ray.GetPoint(distance); // distance along the ray
-        // }
-
-        // if (Input.touchCount > 0)
-        // {
-        //     screenTouch = Input.GetTouch(0);
-
-        //     if (screenTouch.phase == TouchPhase.Moved)
-        //     {
-        //         transform.position = new Vector3(
-        //             transform.position.x + screenTouch.deltaPosition.x * playerMoveSpeed,
-        //             transform.position.y,
-        //             transform.position.z + screenTouch.deltaPosition.y * playerMoveSpeed
-        //         );
-        //     }
-        // }
-
-        // Drag the Player accordingly when the mouse is pressed down
-        Vector2 deltaMousePos = Vector2.zero;
-
-        if (Input.GetMouseButton(0))
-        {
-            // Signals the Game has started and only runs it once if the game has already started
-            if (!GameManager.singleton.GameStarted)
-                GameManager.singleton.StartGame();
-
-            Vector2 currentMousePos = Input.mousePosition;
-
-            if (lastMousePos == Vector2.zero)
-                lastMousePos = currentMousePos;
-
-            deltaMousePos = currentMousePos - lastMousePos;
-            lastMousePos = currentMousePos;
-
-            transform.position = new Vector3(
-                    transform.position.x + deltaMousePos.x * GameManager.singleton.playerDragSpeed,
-                    transform.position.y,
-                    transform.position.z + deltaMousePos.y * GameManager.singleton.playerDragSpeed
-                );
-        }
-        else
-            lastMousePos = Vector2.zero;
+        ConstraintPosition(gameObject, "Enemy");
     }
 
     // To Update the Position of Character with the Constraints
@@ -149,6 +93,24 @@ public class PlayerController : MonoBehaviour
         goCharacter.transform.position = goCharacterOldPos;
     }
 
+    private void MoveEnemy()
+    {
+        if (positionIndex < enemyPositions.Length)
+        {
+            // To check if the distance between the enemy and it's current target position is less than the position's radius
+            if (Vector3.Distance(enemyPositions[positionIndex].transform.position, gameObject.transform.position) < GameManager.singleton.enemyPositionRadius)
+            {
+                if (positionIndex + 1 == enemyPositions.Length)
+                    positionIndex = 0;
+                else
+                    positionIndex++;
+            }
+        }
+
+        // To Set the Destination of the Enemy
+        enemyNavMeshAgent.SetDestination(enemyPositions[positionIndex].transform.position);
+    }
+
     private void LaunchDisc()
     {
         // To work only when the Game has started
@@ -168,7 +130,6 @@ public class PlayerController : MonoBehaviour
             GameManager.singleton.SetDiscCollidedOnce(false);
             GameManager.singleton.SetRepositionDisc(false);
             GameManager.singleton.bounceCount = 0;
-            LaunchIndicator.gameObject.SetActive(false);
         }
     }
 
@@ -178,16 +139,15 @@ public class PlayerController : MonoBehaviour
         if (collider.gameObject.Equals(Disc))
         {
             GameManager.singleton.SetDiscCaught(true);
-            LaunchIndicator.gameObject.SetActive(true);
 
-            // To Stop the Disc on Collision with the Player
+            // To Stop the Disc on Collision with the Enemy
             Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            // To indicate that the disc was last caught by the player
-            Disc.tag = "Player Disc";
+            // To indicate that the disc was last caught by the enemy
+            Disc.tag = "Enemy Disc";
 
             // To reposition the disc on collision
-            GameManager.singleton.lastPlayerPos = transform.position;
+            GameManager.singleton.lastEnemyPos = transform.position;
 
             if (GameManager.singleton.DiscCollidedOnce)
             {
@@ -200,11 +160,11 @@ public class PlayerController : MonoBehaviour
     // TODO - Fix Bug of Destroying Destructable when repositioning
     private void RepositionDisc()
     {
-        discRepositionedPos = new Vector3(GameManager.singleton.lastPlayerPos.x,
-                                          GameManager.singleton.lastPlayerPos.y,
-                                          GameManager.singleton.lastPlayerPos.z - GameManager.singleton.discRepositionZDistance);
+        discRepositionedPos = new Vector3(GameManager.singleton.lastEnemyPos.x,
+                                          GameManager.singleton.lastEnemyPos.y,
+                                          GameManager.singleton.lastEnemyPos.z - GameManager.singleton.discRepositionZDistance);
 
-        // To reposition the Disc behind the Player when Caught
+        // To reposition the Disc behind the Enemy when Caught
         Disc.transform.position = Vector3.Lerp(Disc.transform.position,
                                                 discRepositionedPos,
                                                 GameManager.singleton.discLerpMoveTime * Time.deltaTime);

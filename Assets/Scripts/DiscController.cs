@@ -63,7 +63,7 @@ public class DiscController : MonoBehaviour
                                             GameManager.singleton.bounceBias));
             }
 
-            discRigBody.velocity = discReflection * GameManager.singleton.discForce;
+            discRigBody.velocity = discReflection * GameManager.singleton.discSpeed;
         }
     }
 }
