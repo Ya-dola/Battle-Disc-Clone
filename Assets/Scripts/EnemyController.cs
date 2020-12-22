@@ -95,6 +95,10 @@ public class EnemyController : MonoBehaviour
 
     private void MoveEnemy()
     {
+        // To work only when the Game has started
+        if (!GameManager.singleton.GameStarted)
+            return;
+
         if (positionIndex < enemyPositions.Length)
         {
             // To check if the distance between the enemy and it's current target position is less than the position's radius
@@ -133,29 +137,29 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        // Catching the Disc
-        if (collider.gameObject.Equals(Disc))
-        {
-            GameManager.singleton.SetDiscCaught(true);
+    // private void OnTriggerEnter(Collider collider)
+    // {
+    //     // Catching the Disc
+    //     if (collider.gameObject.Equals(Disc))
+    //     {
+    //         GameManager.singleton.SetDiscCaught(true);
 
-            // To Stop the Disc on Collision with the Enemy
-            Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
+    //         // To Stop the Disc on Collision with the Enemy
+    //         Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            // To indicate that the disc was last caught by the enemy
-            Disc.tag = "Enemy Disc";
+    //         // To indicate that the disc was last caught by the enemy
+    //         Disc.tag = "Enemy Disc";
 
-            // To reposition the disc on collision
-            GameManager.singleton.lastEnemyPos = transform.position;
+    //         // To reposition the disc on collision
+    //         GameManager.singleton.lastEnemyPos = transform.position;
 
-            if (GameManager.singleton.DiscCollidedOnce)
-            {
-                GameManager.singleton.SetRepositionDisc(true);
-                GameManager.singleton.SetDiscCollidedOnce(false);
-            }
-        }
-    }
+    //         if (GameManager.singleton.DiscCollidedOnce)
+    //         {
+    //             GameManager.singleton.SetRepositionDisc(true);
+    //             GameManager.singleton.SetDiscCollidedOnce(false);
+    //         }
+    //     }
+    // }
 
     // TODO - Fix Bug of Destroying Destructable when repositioning
     private void RepositionDisc()

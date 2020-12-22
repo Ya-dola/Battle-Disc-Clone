@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
     {
         // To choose the enemy material for the round
         enemyMaterial = enemyMaterials[Random.Range(0, enemyMaterials.Length)];
+        // enemyMaterial = enemyMaterials[0];
 
         foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("Player Dest"))
             gameObj.GetComponent<Renderer>().material = playerMaterial;

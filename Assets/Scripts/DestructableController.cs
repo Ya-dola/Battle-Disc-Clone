@@ -13,8 +13,12 @@ public class DestructableController : MonoBehaviour
         if (!collision.gameObject.Equals(Disc))
             return;
 
+        // To indicate that the disc has already collided once if it already hasn't
         if (!GameManager.singleton.DiscCollidedOnce)
             GameManager.singleton.SetDiscCollidedOnce(true);
+
+        // To reset the bounce count on disc collision with a destructable
+        GameManager.singleton.bounceCount = 0;
 
         if ((Disc.tag == "Player Disc" & gameObject.tag == "Enemy Dest") ||
             Disc.tag == "Enemy Disc" & gameObject.tag == "Player Dest")
