@@ -690,8 +690,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 108067276}
   - {fileID: 601835525}
+  - {fileID: 108067276}
   - {fileID: 1182979460}
   - {fileID: 2033038028}
   - {fileID: 2020122342}
@@ -3936,7 +3936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2121095232
 MonoBehaviour:
   m_ObjectHideFlags: 0

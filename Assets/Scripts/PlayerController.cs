@@ -177,6 +177,10 @@ public class PlayerController : MonoBehaviour
         // Catching the Disc
         if (collider.gameObject.Equals(Disc))
         {
+            // To ensure that the Collision Effect does not occur more than once 
+            if (GameManager.singleton.DiscCaught)
+                return;
+
             GameManager.singleton.SetDiscCaught(true);
             LaunchIndicator.gameObject.SetActive(true);
 
