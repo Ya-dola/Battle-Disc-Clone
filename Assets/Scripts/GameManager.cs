@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     public Material playerMaterial;
     public Material[] enemyMaterials;
     public Material enemyMaterial { get; set; }
+    public Material enemyFinalMaterial;
 
     [Header("Debug")]
     public TextMeshProUGUI debugText;

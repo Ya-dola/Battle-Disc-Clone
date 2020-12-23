@@ -161,7 +161,7 @@ public class EnemyController : MonoBehaviour
         // Moving the Enemy from it's current position to the other
         transform.position = Vector3.MoveTowards(transform.position,
                                                  enemyPositions[positionIndex].transform.position,
-                                                 GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+                                                 GameManager.singleton.enemyMoveSpeed * Time.fixedDeltaTime);
 
         // To check if the distance between the enemy and it's current target position is less than the position's radius
         if (Vector3.Distance(transform.position, enemyPositions[positionIndex].transform.position) < GameManager.singleton.enemyPositionRadius)
@@ -178,7 +178,7 @@ public class EnemyController : MonoBehaviour
             // Moving the Enemy from it's current position to the disc's position
             transform.position = Vector3.MoveTowards(transform.position,
                                                      Disc.transform.position,
-                                                     GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+                                                     GameManager.singleton.enemyMoveSpeed * Time.fixedDeltaTime);
         else
             // To Transition the Enemy to the CaughtDisc State
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.CaughtDisc;
@@ -201,7 +201,7 @@ public class EnemyController : MonoBehaviour
         // Moving the Enemy from it's current position to the it's launching position
         transform.position = Vector3.MoveTowards(transform.position,
                                                  launchPos,
-                                                 GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+                                                 GameManager.singleton.enemyMoveSpeed * Time.fixedDeltaTime);
 
         if (launchTimer > 0)
             launchTimer -= Time.fixedDeltaTime;
@@ -247,11 +247,9 @@ public class EnemyController : MonoBehaviour
             // To reposition the disc on collision
             GameManager.singleton.lastEnemyPos = transform.position;
 
-            if (GameManager.singleton.DiscCollidedOnce)
-            {
-                GameManager.singleton.SetEnemyRepositionDisc(true);
-                GameManager.singleton.SetDiscCollidedOnce(false);
-            }
+            // To reposition the disc
+            GameManager.singleton.SetEnemyRepositionDisc(true);
+            GameManager.singleton.SetDiscCollidedOnce(false);
         }
     }
 
@@ -264,7 +262,7 @@ public class EnemyController : MonoBehaviour
         // To reposition the Disc behind the Enemy when Caught
         Disc.transform.position = Vector3.Lerp(Disc.transform.position,
                                                 discRepositionedPos,
-                                                GameManager.singleton.discLerpMoveTime * Time.deltaTime);
+                                                GameManager.singleton.discLerpMoveTime * Time.fixedDeltaTime);
 
         // To indicate the disc has repositioned
         if (Disc.transform.position == discRepositionedPos)

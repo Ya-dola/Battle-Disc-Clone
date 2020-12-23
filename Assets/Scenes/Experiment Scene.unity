@@ -262,10 +262,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDragSpeed: 0.025
-  enemyMoveSpeed: 3
+  enemyMoveSpeed: 2
   enemyLaunchVariance: 2
   enemyIdleTime: 3
-  enemyLaunchDelayTime: 0.75
+  enemyLaunchDelayTime: 1.5
   enemyPositionRadius: 0.1
   enemyDetectionRadius: 3
   discSpeed: 18
@@ -287,6 +287,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 0a211fc4d5c26e34dbe6db66b9254cf7, type: 2}
   - {fileID: 2100000, guid: 17a768943c242694ba819f56ef07228e, type: 2}
   - {fileID: 2100000, guid: e8ad2a5f18ea1554486066dc2830fbc1, type: 2}
+  enemyFinalMaterial: {fileID: 2100000, guid: 3d17b149e9652124b8946a534beb1163, type: 2}
   debugText: {fileID: 1615034937}
 --- !u!4 &108067276 stripped
 Transform:

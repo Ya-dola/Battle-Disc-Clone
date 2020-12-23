@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
             if (GameManager.singleton.PlayerDiscCaught)
                 return;
 
+            // To indicate that the Player Caught the Disc
             GameManager.singleton.SetPlayerDiscCaught(true);
             LaunchIndicator.gameObject.SetActive(true);
 
@@ -195,11 +196,9 @@ public class PlayerController : MonoBehaviour
             // To reposition the disc on collision
             GameManager.singleton.lastPlayerPos = transform.position;
 
-            if (GameManager.singleton.DiscCollidedOnce)
-            {
-                GameManager.singleton.SetPlayerRepositionDisc(true);
-                GameManager.singleton.SetDiscCollidedOnce(false);
-            }
+            // To reposition the disc
+            GameManager.singleton.SetPlayerRepositionDisc(true);
+            GameManager.singleton.SetDiscCollidedOnce(false);
         }
     }
 
@@ -212,7 +211,7 @@ public class PlayerController : MonoBehaviour
         // To reposition the Disc behind the Player when Caught
         Disc.transform.position = Vector3.Lerp(Disc.transform.position,
                                                 discRepositionedPos,
-                                                GameManager.singleton.discLerpMoveTime * Time.deltaTime);
+                                                GameManager.singleton.discLerpMoveTime * Time.fixedDeltaTime);
 
         // To indicate the disc has repositioned
         if (Disc.transform.position == discRepositionedPos)
