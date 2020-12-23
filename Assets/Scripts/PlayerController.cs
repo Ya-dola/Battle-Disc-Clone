@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour
     {
         DragPlayer();
 
+        // To work only when the Game has started
+        if (!GameManager.singleton.GameStarted)
+            return;
+
         LaunchDisc();
 
         // To reposition the Disc behind the Player when Caught
@@ -151,11 +155,7 @@ public class PlayerController : MonoBehaviour
 
     private void LaunchDisc()
     {
-        // To work only when the Game has started
-        if (!GameManager.singleton.GameStarted)
-            return;
-
-        // To only run when the disc is caught and has already collided once with something
+        // To only run when the disc is caught and has already collided once with any object besides the Player
         if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.PlayerDiscCaught)
         {
             Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - Disc.transform.position) *

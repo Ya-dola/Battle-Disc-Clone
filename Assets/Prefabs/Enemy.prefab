@@ -72,7 +72,6 @@ GameObject:
   - component: {fileID: 4112862479119337943}
   - component: {fileID: 6312306579826042029}
   - component: {fileID: 8866808622528297042}
-  - component: {fileID: 7395099318807196113}
   - component: {fileID: 7395099318807196112}
   m_Layer: 11
   m_Name: Enemy
@@ -130,28 +129,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &7395099318807196113
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101283467853183940}
-  m_Enabled: 1
-  m_AgentTypeID: -1372625422
-  m_Radius: 0.5
-  m_Speed: 4
-  m_Acceleration: 200
-  avoidancePriority: 50
-  m_AngularSpeed: 0
-  m_StoppingDistance: 0.1
-  m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &7395099318807196112
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,6 +39,7 @@ public class DiscController : MonoBehaviour
         if (!GameManager.singleton.GameStarted)
             return;
 
+        // To bounce when the disc collides with anything other than the Player
         if (collision.gameObject.tag != "Player")
         {
             // discRigBody.velocity = Vector3.Reflect(lastDiscVelocity.normalized, collision.contacts[0].normal) *

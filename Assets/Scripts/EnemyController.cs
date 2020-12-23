@@ -39,9 +39,7 @@ public class EnemyController : MonoBehaviour
         if (!GameManager.singleton.GameStarted)
             return;
 
-        MoveEnemy();
-
-        // LaunchDisc();
+        EnemyMovementLogic();
 
         // To reposition the Disc behind the Enemy when Caught
         if (GameManager.singleton.EnemyRepositionDisc)
@@ -96,7 +94,7 @@ public class EnemyController : MonoBehaviour
         goCharacter.transform.position = goCharacterOldPos;
     }
 
-    private void MoveEnemy()
+    private void EnemyMovementLogic()
     {
         switch (GameManager.singleton.enemyState)
         {
@@ -110,9 +108,9 @@ public class EnemyController : MonoBehaviour
             case GameManager.EnemyStateEnum.ChasingDisc:
                 ChasingDiscState();
                 break;
-                // case GameManager.EnemyStateEnum.CaughtDisc:
-                //     CaughtDiscState();
-                //     break;
+            case GameManager.EnemyStateEnum.CaughtDisc:
+                CaughtDiscState();
+                break;
         }
     }
 
@@ -139,14 +137,14 @@ public class EnemyController : MonoBehaviour
             // To reset the timer
             idleTimer = 0;
 
-            // To move to the next roaming position
+            // To start the idle timer and transition the Enemy to the Roaming state
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
         }
     }
 
     private void RoamingState()
     {
-        // Moving the Enemy from one position to the other
+        // Moving the Enemy from it's current position to the other
         transform.position = Vector3.MoveTowards(transform.position,
                                                  enemyPositions[positionIndex].transform.position,
                                                  GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
@@ -154,7 +152,7 @@ public class EnemyController : MonoBehaviour
         // To check if the distance between the enemy and it's current target position is less than the position's radius
         if (Vector3.Distance(transform.position, enemyPositions[positionIndex].transform.position) < GameManager.singleton.enemyPositionRadius)
         {
-            // To start the idle timer and transition the enemy to the idle state
+            // To start the idle timer and transition the Enemy to the Idle state
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Idle;
             idleTimer = GameManager.singleton.enemyIdleTime;
         }
@@ -162,19 +160,24 @@ public class EnemyController : MonoBehaviour
 
     private void ChasingDiscState()
     {
-        // Moving the Enemy from one position to the other
-        transform.position = Vector3.MoveTowards(transform.position,
-                                                 Disc.transform.position,
-                                                 GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+        if (!GameManager.singleton.EnemyDiscCaught)
+            // Moving the Enemy from it's current position to the disc's position
+            transform.position = Vector3.MoveTowards(transform.position,
+                                                     Disc.transform.position,
+                                                     GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+
+    }
+    private void CaughtDiscState()
+    {
+        // Moving the Enemy from it's current position to the disc's position
+        // transform.position = Vector3.MoveTowards(transform.position,
+        //                                          Disc.transform.position,
+        //                                          GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
 
     }
 
     private void LaunchDisc()
     {
-        // To work only when the Game has started
-        if (!GameManager.singleton.GameStarted)
-            return;
-
         // To only run when the disc is caught and has already collided once with something
         if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.EnemyDiscCaught)
         {
@@ -197,6 +200,9 @@ public class EnemyController : MonoBehaviour
         if (collider.gameObject.Equals(Disc))
         {
             GameManager.singleton.SetEnemyDiscCaught(true);
+
+            // To Transition the Enemy to the CaughtDisc State
+            GameManager.singleton.enemyState = GameManager.EnemyStateEnum.CaughtDisc;
 
             // To Stop the Disc on Collision with the Enemy
             Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
