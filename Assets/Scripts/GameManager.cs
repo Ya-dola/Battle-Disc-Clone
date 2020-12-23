@@ -26,9 +26,12 @@ public class GameManager : MonoBehaviour
     public Vector3 lastPlayerPos { get; set; }
 
     [Header("Enemy")]
-    public float enemyPositionRadius;
     public float enemyIdleTime;
     public float enemyMoveSpeed;
+
+    [Header("Enemy Radii")]
+    public float enemyPositionRadius;
+    public float enemyDetectionRadius;
     [HideInInspector]
     public enum EnemyStateEnum
     {

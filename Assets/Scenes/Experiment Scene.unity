@@ -264,7 +264,8 @@ MonoBehaviour:
   playerDragSpeed: 0.025
   enemyPositionRadius: 0.25
   enemyIdleTime: 3
-  enemyMoveSpeed: 4
+  enemyMoveSpeed: 3
+  enemyDetectionRadius: 3
   discSpeed: 18
   discLerpMoveTime: 4
   bounceRandIterator: 6
@@ -646,6 +647,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2018396840035608046, guid: 2e4778bafd4c7bd45b97bcb06bd532be, type: 3}
+      propertyPath: Disc
+      value: 
+      objectReference: {fileID: 641194749}
     - target: {fileID: 4112862479119337943, guid: 2e4778bafd4c7bd45b97bcb06bd532be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -98,40 +98,25 @@ public class EnemyController : MonoBehaviour
 
     private void MoveEnemy()
     {
-        // if (positionIndex < enemyPositions.Length)
-        // {
-        //     // To check if the distance between the enemy and it's current target position is less than the position's radius
-        //     if (Vector3.Distance(enemyPositions[positionIndex].transform.position, gameObject.transform.position) < GameManager.singleton.enemyPositionRadius)
-        //     {
-        //         if (positionIndex + 1 == enemyPositions.Length)
-        //             positionIndex = 0;
-        //         else
-        //             positionIndex++;
-        //     }
-        // }
-
-        // To Set the Destination of the Enemy
-        // enemyNavMeshAgent.SetDestination(enemyPositions[positionIndex].transform.position);
-
         switch (GameManager.singleton.enemyState)
         {
             default:
             case GameManager.EnemyStateEnum.Idle:
-                EnemyIdleState();
+                IdleState();
                 break;
             case GameManager.EnemyStateEnum.Roaming:
-                EnemyRoamingState();
+                RoamingState();
                 break;
-                // case GameManager.EnemyStateEnum.ChasingDisc:
-                //     EnemyRoamingState();
-                //     break;
+            case GameManager.EnemyStateEnum.ChasingDisc:
+                ChasingDiscState();
+                break;
                 // case GameManager.EnemyStateEnum.CaughtDisc:
-                //     EnemyRoamingState();
+                //     CaughtDiscState();
                 //     break;
         }
     }
 
-    private void EnemyIdleState()
+    private void IdleState()
     {
         if (idleTimer > 0)
         {
@@ -159,8 +144,9 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void EnemyRoamingState()
+    private void RoamingState()
     {
+        // Moving the Enemy from one position to the other
         transform.position = Vector3.MoveTowards(transform.position,
                                                  enemyPositions[positionIndex].transform.position,
                                                  GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
@@ -168,10 +154,19 @@ public class EnemyController : MonoBehaviour
         // To check if the distance between the enemy and it's current target position is less than the position's radius
         if (Vector3.Distance(transform.position, enemyPositions[positionIndex].transform.position) < GameManager.singleton.enemyPositionRadius)
         {
+            // To start the idle timer and transition the enemy to the idle state
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Idle;
-
             idleTimer = GameManager.singleton.enemyIdleTime;
         }
+    }
+
+    private void ChasingDiscState()
+    {
+        // Moving the Enemy from one position to the other
+        transform.position = Vector3.MoveTowards(transform.position,
+                                                 Disc.transform.position,
+                                                 GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+
     }
 
     private void LaunchDisc()
