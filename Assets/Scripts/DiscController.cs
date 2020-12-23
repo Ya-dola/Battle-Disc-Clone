@@ -28,7 +28,7 @@ public class DiscController : MonoBehaviour
 
     void LateUpdate()
     {
-        // To Change the layer of the disc to a layer which collides with the player
+        // To Change the layer of the disc to a layer which collides with the Player and Enemy
         if (GameManager.singleton.DiscCollidedOnce)
             gameObject.layer = LayerMask.NameToLayer("Disc");
     }

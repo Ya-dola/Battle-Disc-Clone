@@ -13,6 +13,9 @@ public class EnemyController : MonoBehaviour
 
     private int positionIndex;
     private float idleTimer;
+    private float launchTimer;
+    private Vector3 launchPos;
+    private bool launchPosDecided;
 
     void Awake()
     {
@@ -22,7 +25,11 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Setting Default Values
         positionIndex = 0;
+        idleTimer = 0;
+        launchTimer = 0;
+        launchPosDecided = false;
         GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
     }
 
@@ -39,7 +46,8 @@ public class EnemyController : MonoBehaviour
         if (!GameManager.singleton.GameStarted)
             return;
 
-        EnemyMovementLogic();
+        // Enemy AI Logic with regards to movement of the enemy
+        EnemyLogic();
 
         // To reposition the Disc behind the Enemy when Caught
         if (GameManager.singleton.EnemyRepositionDisc)
@@ -94,7 +102,7 @@ public class EnemyController : MonoBehaviour
         goCharacter.transform.position = goCharacterOldPos;
     }
 
-    private void EnemyMovementLogic()
+    private void EnemyLogic()
     {
         switch (GameManager.singleton.enemyState)
         {
@@ -117,9 +125,7 @@ public class EnemyController : MonoBehaviour
     private void IdleState()
     {
         if (idleTimer > 0)
-        {
-            idleTimer -= Time.deltaTime;
-        }
+            idleTimer -= Time.fixedDeltaTime;
         else
         {
             if (positionIndex < enemyPositions.Length)
@@ -134,10 +140,10 @@ public class EnemyController : MonoBehaviour
                 }
             }
 
-            // To reset the timer
+            // To reset the Idle timer
             idleTimer = 0;
 
-            // To start the idle timer and transition the Enemy to the Roaming state
+            // To transition the Enemy to the Roaming state
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
         }
     }
@@ -169,20 +175,28 @@ public class EnemyController : MonoBehaviour
     }
     private void CaughtDiscState()
     {
-        // Moving the Enemy from it's current position to the disc's position
-        // transform.position = Vector3.MoveTowards(transform.position,
-        //                                          Disc.transform.position,
-        //                                          GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+        if (!launchPosDecided)
+        {
+            // Determining the Launch Position of the Enemy
+            launchPos = new Vector3(transform.position.x + Random.Range(-GameManager.singleton.enemyLaunchVariance, GameManager.singleton.enemyLaunchVariance),
+                                    transform.position.y,
+                                    transform.position.z + Random.Range(0f, -GameManager.singleton.enemyLaunchVariance));
 
-    }
+            launchPosDecided = true;
+            launchTimer = GameManager.singleton.enemyLaunchDelayTime;
+        }
 
-    private void LaunchDisc()
-    {
-        // To only run when the disc is caught and has already collided once with something
-        if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.EnemyDiscCaught)
+        // Moving the Enemy from it's current position to the it's launching position
+        transform.position = Vector3.MoveTowards(transform.position,
+                                                 launchPos,
+                                                 GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+
+        if (launchTimer > 0)
+            launchTimer -= Time.fixedDeltaTime;
+        else
         {
             Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - Disc.transform.position) *
-                                                        GameManager.singleton.discSpeed;
+                                                                   GameManager.singleton.discSpeed;
 
             Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
@@ -191,6 +205,13 @@ public class EnemyController : MonoBehaviour
             GameManager.singleton.SetDiscCollidedOnce(false);
             GameManager.singleton.SetEnemyRepositionDisc(false);
             GameManager.singleton.bounceCount = 0;
+
+            // To reset the Enemy CaughtDisc conditions
+            launchPosDecided = false;
+            launchTimer = 0;
+
+            // To transition the Enemy to the Roaming state
+            GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
         }
     }
 

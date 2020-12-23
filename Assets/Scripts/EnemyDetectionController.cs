@@ -28,15 +28,15 @@ public class EnemyDetectionController : MonoBehaviour
     {
         // To check if the disc is within the enemy detection area or not
         if (collider.gameObject.Equals(Disc))
+            // To transition the Enemy to the ChasingDisc state
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.ChasingDisc;
-        else
-            GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
     }
 
     void OnTriggerExit(Collider collider)
     {
         // To indicate that the disc left the detection area of the enemy
         if (collider.gameObject.Equals(Disc))
+            // To transition the Enemy to the Roaming state
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
     }
 }
