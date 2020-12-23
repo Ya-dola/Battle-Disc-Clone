@@ -47,8 +47,10 @@ public class GameManager : MonoBehaviour
     public EnemyStateEnum enemyState { get; set; }
 
     [Header("Disc")]
-    // [Range(0, 100)]
+    [Range(0, 24f)]
     public float discSpeed;
+    [Range(0, 4f)]
+    public float discSpeedDif;
     public float discLerpMoveTime;
     public int bounceRandIterator;
     [Range(0, 1)]
@@ -72,14 +74,14 @@ public class GameManager : MonoBehaviour
     [Header("Materials")]
     public Material playerMaterial;
     public Material[] enemyMaterials;
-    private Material enemyMaterial;
+    public Material enemyMaterial { get; set; }
 
     [Header("Debug")]
     public TextMeshProUGUI debugText;
 
     void Awake()
     {
-        // Creates a Single Instance of the game manager through out the entire game
+        // Creates a Single Instance of the Game Manager through out the entire game
         if (singleton == null)
             singleton = this;
         else if (singleton != this)

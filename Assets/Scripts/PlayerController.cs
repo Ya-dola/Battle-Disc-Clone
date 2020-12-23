@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
     // Occurs after physics is applied 
     private void LateUpdate()
     {
+        // To Update the Position of the Player with the Constraints
         ConstraintPosition(gameObject, "Player");
     }
 
@@ -112,7 +113,7 @@ public class PlayerController : MonoBehaviour
             lastMousePos = Vector2.zero;
     }
 
-    // To Update the Position of Character with the Constraints
+    // To Update the Position of the Character with the Constraints
     private void ConstraintPosition(GameObject goCharacter, string character)
     {
         Vector3 goCharacterOldPos = goCharacter.transform.position;
@@ -172,7 +173,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter(Collider collider)
     {
         // Catching the Disc
         if (collider.gameObject.Equals(Disc))
@@ -187,8 +188,9 @@ public class PlayerController : MonoBehaviour
             // To Stop the Disc on Collision with the Player
             Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            // To indicate that the disc was last caught by the player
+            // To indicate that the disc was last caught by the Player
             Disc.tag = "Player Disc";
+            Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.playerMaterial;
 
             // To reposition the disc on collision
             GameManager.singleton.lastPlayerPos = transform.position;

@@ -13,6 +13,25 @@ public class DiscController : MonoBehaviour
         discRigBody = GetComponent<Rigidbody>();
     }
 
+    // Fixed Update used mainly for Physics Calculations
+    void FixedUpdate()
+    {
+        // To work only when the Game has started
+        if (!GameManager.singleton.GameStarted)
+            return;
+
+        // To ensure the disc always moves at a constant speed when not caught
+        if (!GameManager.singleton.PlayerDiscCaught &
+            !GameManager.singleton.EnemyDiscCaught &
+            discRigBody.velocity.magnitude < GameManager.singleton.discSpeed - GameManager.singleton.discSpeedDif)
+        {
+            if (transform.position.z < 0)
+                discRigBody.velocity = new Vector3(Random.Range(-1f, 1f), 0, 1).normalized * GameManager.singleton.discSpeed;
+            else
+                discRigBody.velocity = new Vector3(Random.Range(-1f, 1f), 0, -1).normalized * GameManager.singleton.discSpeed;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

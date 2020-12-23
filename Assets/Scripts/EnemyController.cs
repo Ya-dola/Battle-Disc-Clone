@@ -58,10 +58,11 @@ public class EnemyController : MonoBehaviour
     // Occurs after physics is applied 
     private void LateUpdate()
     {
+        // To Update the Position of the Enemy with the Constraints
         ConstraintPosition(gameObject, "Enemy");
     }
 
-    // To Update the Position of Character with the Constraints
+    // To Update the Position of the Character with the Constraints
     private void ConstraintPosition(GameObject goCharacter, string character)
     {
         Vector3 goCharacterOldPos = goCharacter.transform.position;
@@ -110,16 +111,23 @@ public class EnemyController : MonoBehaviour
             case GameManager.EnemyStateEnum.Idle:
                 IdleState();
                 break;
+
             case GameManager.EnemyStateEnum.Roaming:
                 RoamingState();
                 break;
+
             case GameManager.EnemyStateEnum.ChasingDisc:
                 ChasingDiscState();
                 break;
+
             case GameManager.EnemyStateEnum.CaughtDisc:
                 CaughtDiscState();
                 break;
         }
+
+        if (GameManager.singleton.EnemyDiscCaught)
+            // To Transition the Enemy to the CaughtDisc State
+            GameManager.singleton.enemyState = GameManager.EnemyStateEnum.CaughtDisc;
     }
 
     private void IdleState()
@@ -171,6 +179,9 @@ public class EnemyController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position,
                                                      Disc.transform.position,
                                                      GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+        else
+            // To Transition the Enemy to the CaughtDisc State
+            GameManager.singleton.enemyState = GameManager.EnemyStateEnum.CaughtDisc;
 
     }
     private void CaughtDiscState()
@@ -216,7 +227,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter(Collider collider)
     {
         // Catching the Disc
         if (collider.gameObject.Equals(Disc))
@@ -229,8 +240,9 @@ public class EnemyController : MonoBehaviour
             // To Stop the Disc on Collision with the Enemy
             Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-            // To indicate that the disc was last caught by the enemy
+            // To indicate that the disc was last caught by the Enemy
             Disc.tag = "Enemy Disc";
+            Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.enemyMaterial;
 
             // To reposition the disc on collision
             GameManager.singleton.lastEnemyPos = transform.position;
