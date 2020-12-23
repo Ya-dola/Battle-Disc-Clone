@@ -41,8 +41,8 @@ public class PlayerController : MonoBehaviour
         LaunchDisc();
 
         // To reposition the Disc behind the Player when Caught
-        if (GameManager.singleton.RepositionDisc)
-            RepositionDisc();
+        if (GameManager.singleton.PlayerRepositionDisc)
+            PlayerRepositionDisc();
     }
 
     // Late Update used mainly for Camera Calculations and Calculations that need to occur after movement has occured
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         // To only run when the disc is caught and has already collided once with something
-        if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.DiscCaught)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.PlayerDiscCaught)
         {
             Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - Disc.transform.position) *
                                                         GameManager.singleton.discSpeed;
@@ -164,9 +164,9 @@ public class PlayerController : MonoBehaviour
             Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
             // To reset disc conditions
-            GameManager.singleton.SetDiscCaught(false);
+            GameManager.singleton.SetPlayerDiscCaught(false);
             GameManager.singleton.SetDiscCollidedOnce(false);
-            GameManager.singleton.SetRepositionDisc(false);
+            GameManager.singleton.SetPlayerRepositionDisc(false);
             GameManager.singleton.bounceCount = 0;
             LaunchIndicator.gameObject.SetActive(false);
         }
@@ -178,10 +178,10 @@ public class PlayerController : MonoBehaviour
         if (collider.gameObject.Equals(Disc))
         {
             // To ensure that the Collision Effect does not occur more than once 
-            if (GameManager.singleton.DiscCaught)
+            if (GameManager.singleton.PlayerDiscCaught)
                 return;
 
-            GameManager.singleton.SetDiscCaught(true);
+            GameManager.singleton.SetPlayerDiscCaught(true);
             LaunchIndicator.gameObject.SetActive(true);
 
             // To Stop the Disc on Collision with the Player
@@ -195,14 +195,13 @@ public class PlayerController : MonoBehaviour
 
             if (GameManager.singleton.DiscCollidedOnce)
             {
-                GameManager.singleton.SetRepositionDisc(true);
+                GameManager.singleton.SetPlayerRepositionDisc(true);
                 GameManager.singleton.SetDiscCollidedOnce(false);
             }
         }
     }
 
-    // TODO - Fix Bug of Destroying Destructable when repositioning
-    private void RepositionDisc()
+    private void PlayerRepositionDisc()
     {
         discRepositionedPos = new Vector3(GameManager.singleton.lastPlayerPos.x,
                                           GameManager.singleton.lastPlayerPos.y,
@@ -215,6 +214,6 @@ public class PlayerController : MonoBehaviour
 
         // To indicate the disc has repositioned
         if (Disc.transform.position == discRepositionedPos)
-            GameManager.singleton.SetRepositionDisc(false);
+            GameManager.singleton.SetPlayerRepositionDisc(false);
     }
 }

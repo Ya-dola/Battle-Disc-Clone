@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
     // private Animator enemyAnimator;
     public GameObject Disc;
     private Vector3 discRepositionedPos;
-    private NavMeshAgent enemyNavMeshAgent;
 
     [Header("Enemy AI Movement")]
     public GameObject[] enemyPositions;
@@ -18,7 +16,6 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         // enemyAnimator = GetComponentInChildren<Animator>();
-        enemyNavMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     // Start is called before the first frame update
@@ -36,13 +33,17 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // To work only when the Game has started
+        if (!GameManager.singleton.GameStarted)
+            return;
+
         MoveEnemy();
 
         // LaunchDisc();
 
-        // // To reposition the Disc behind the Enemy when Caught
-        // if (GameManager.singleton.RepositionDisc)
-        //     RepositionDisc();
+        // To reposition the Disc behind the Enemy when Caught
+        if (GameManager.singleton.EnemyRepositionDisc)
+            EnemyRepositionDisc();
     }
 
     // Late Update used mainly for Camera Calculations and Calculations that need to occur after movement has occured
@@ -95,24 +96,28 @@ public class EnemyController : MonoBehaviour
 
     private void MoveEnemy()
     {
-        // To work only when the Game has started
-        if (!GameManager.singleton.GameStarted)
-            return;
+        // if (positionIndex < enemyPositions.Length)
+        // {
+        //     // To check if the distance between the enemy and it's current target position is less than the position's radius
+        //     if (Vector3.Distance(enemyPositions[positionIndex].transform.position, gameObject.transform.position) < GameManager.singleton.enemyPositionRadius)
+        //     {
+        //         if (positionIndex + 1 == enemyPositions.Length)
+        //             positionIndex = 0;
+        //         else
+        //             positionIndex++;
+        //     }
+        // }
 
-        if (positionIndex < enemyPositions.Length)
-        {
-            // To check if the distance between the enemy and it's current target position is less than the position's radius
-            if (Vector3.Distance(enemyPositions[positionIndex].transform.position, gameObject.transform.position) < GameManager.singleton.enemyPositionRadius)
-            {
-                if (positionIndex + 1 == enemyPositions.Length)
-                    positionIndex = 0;
-                else
-                    positionIndex++;
-            }
-        }
+        // // To Set the Destination of the Enemy
+        // enemyNavMeshAgent.SetDestination(enemyPositions[positionIndex].transform.position);
 
-        // To Set the Destination of the Enemy
-        enemyNavMeshAgent.SetDestination(enemyPositions[positionIndex].transform.position);
+        // switch (GameManager.singleton.enemyState)
+        // {
+        //     default:
+        //     case GameManager.EnemyStateEnum.Roaming:
+
+        //         break;
+        // }
     }
 
     private void LaunchDisc()
@@ -122,7 +127,7 @@ public class EnemyController : MonoBehaviour
             return;
 
         // To only run when the disc is caught and has already collided once with something
-        if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.DiscCaught)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.EnemyDiscCaught)
         {
             Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - Disc.transform.position) *
                                                         GameManager.singleton.discSpeed;
@@ -130,43 +135,42 @@ public class EnemyController : MonoBehaviour
             Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
             // To reset disc conditions
-            GameManager.singleton.SetDiscCaught(false);
+            GameManager.singleton.SetEnemyDiscCaught(false);
             GameManager.singleton.SetDiscCollidedOnce(false);
-            GameManager.singleton.SetRepositionDisc(false);
+            GameManager.singleton.SetEnemyRepositionDisc(false);
             GameManager.singleton.bounceCount = 0;
         }
     }
 
-    // private void OnTriggerEnter(Collider collider)
-    // {
-    //     // Catching the Disc
-    //     if (collider.gameObject.Equals(Disc))
-    //     {
-    //         GameManager.singleton.SetDiscCaught(true);
+    private void OnTriggerEnter(Collider collider)
+    {
+        // Catching the Disc
+        if (collider.gameObject.Equals(Disc))
+        {
+            GameManager.singleton.SetEnemyDiscCaught(true);
 
-    //         // To Stop the Disc on Collision with the Enemy
-    //         Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            // To Stop the Disc on Collision with the Enemy
+            Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-    //         // To indicate that the disc was last caught by the enemy
-    //         Disc.tag = "Enemy Disc";
+            // To indicate that the disc was last caught by the enemy
+            Disc.tag = "Enemy Disc";
 
-    //         // To reposition the disc on collision
-    //         GameManager.singleton.lastEnemyPos = transform.position;
+            // To reposition the disc on collision
+            GameManager.singleton.lastEnemyPos = transform.position;
 
-    //         if (GameManager.singleton.DiscCollidedOnce)
-    //         {
-    //             GameManager.singleton.SetRepositionDisc(true);
-    //             GameManager.singleton.SetDiscCollidedOnce(false);
-    //         }
-    //     }
-    // }
+            if (GameManager.singleton.DiscCollidedOnce)
+            {
+                GameManager.singleton.SetEnemyRepositionDisc(true);
+                GameManager.singleton.SetDiscCollidedOnce(false);
+            }
+        }
+    }
 
-    // TODO - Fix Bug of Destroying Destructable when repositioning
-    private void RepositionDisc()
+    private void EnemyRepositionDisc()
     {
         discRepositionedPos = new Vector3(GameManager.singleton.lastEnemyPos.x,
                                           GameManager.singleton.lastEnemyPos.y,
-                                          GameManager.singleton.lastEnemyPos.z - GameManager.singleton.discRepositionZDistance);
+                                          GameManager.singleton.lastEnemyPos.z + GameManager.singleton.discRepositionZDistance);
 
         // To reposition the Disc behind the Enemy when Caught
         Disc.transform.position = Vector3.Lerp(Disc.transform.position,
@@ -175,6 +179,6 @@ public class EnemyController : MonoBehaviour
 
         // To indicate the disc has repositioned
         if (Disc.transform.position == discRepositionedPos)
-            GameManager.singleton.SetRepositionDisc(false);
+            GameManager.singleton.SetEnemyRepositionDisc(false);
     }
 }

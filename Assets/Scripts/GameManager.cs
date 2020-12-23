@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     // public bool GameWon { get; private set; }
     // public bool GameLost { get; private set; }
 
-    public bool DiscCaught { get; private set; }
+    public bool PlayerDiscCaught { get; private set; }
+    public bool EnemyDiscCaught { get; private set; }
     public bool DiscCollidedOnce { get; private set; }
-    public bool RepositionDisc { get; private set; }
+    public bool PlayerRepositionDisc { get; private set; }
+    public bool EnemyRepositionDisc { get; private set; }
 
     public Vector3 lastEnemyPos { get; set; }
 
@@ -25,6 +27,15 @@ public class GameManager : MonoBehaviour
 
     [Header("Enemy")]
     public float enemyPositionRadius;
+    [HideInInspector]
+    public enum EnemyStateEnum
+    {
+        Roaming,
+        ChasingDisc,
+        CaughtDisc
+    }
+    [HideInInspector]
+    public EnemyStateEnum enemyState;
 
     [Header("Disc")]
     // [Range(0, 100)]
@@ -77,9 +88,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         debugText.text = "Game Started: " + GameStarted + "\n" +
-                         "Disc Caught: " + DiscCaught + "\n" +
+                         "Player Disc Caught: " + PlayerDiscCaught + "\n" +
+                         "Player Reposition Disc: " + PlayerRepositionDisc + "\n" +
                          "Disc Collided Once: " + DiscCollidedOnce + "\n" +
-                         "Reposition Disc: " + RepositionDisc + "\n" +
+                         "Enemy Disc Caught: " + EnemyDiscCaught + "\n" +
+                         "Enemy Reposition Disc: " + EnemyRepositionDisc + "\n" +
                          "Bounce Count: " + bounceCount + "\n";
     }
 
@@ -88,7 +101,7 @@ public class GameManager : MonoBehaviour
         GameStarted = true;
 
         // Starting Conditions of the Disc
-        SetDiscCaught(true);
+        SetPlayerDiscCaught(true);
         SetDiscCollidedOnce(false);
     }
 
@@ -136,9 +149,13 @@ public class GameManager : MonoBehaviour
     }
 
     // Setters
-    public void SetDiscCaught(bool status)
+    public void SetPlayerDiscCaught(bool status)
     {
-        DiscCaught = status;
+        PlayerDiscCaught = status;
+    }
+    public void SetEnemyDiscCaught(bool status)
+    {
+        EnemyDiscCaught = status;
     }
 
     public void SetDiscCollidedOnce(bool status)
@@ -146,8 +163,12 @@ public class GameManager : MonoBehaviour
         DiscCollidedOnce = status;
     }
 
-    public void SetRepositionDisc(bool status)
+    public void SetPlayerRepositionDisc(bool status)
     {
-        RepositionDisc = status;
+        PlayerRepositionDisc = status;
+    }
+    public void SetEnemyRepositionDisc(bool status)
+    {
+        EnemyRepositionDisc = status;
     }
 }

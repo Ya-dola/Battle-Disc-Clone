@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 8866808622528297042}
   - component: {fileID: 7395099318807196113}
   - component: {fileID: 7395099318807196112}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 0
   m_StoppingDistance: 0.1
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
