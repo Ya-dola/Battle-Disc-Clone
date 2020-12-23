@@ -264,7 +264,7 @@ MonoBehaviour:
   playerDragSpeed: 0.025
   enemyMoveSpeed: 1
   enemyLaunchVariance: 2
-  enemyIdleTime: 16
+  enemyIdleTime: 8
   enemyLaunchDelayTime: 2
   enemyPositionRadius: 0.1
   enemyDetectionRadius: 3
