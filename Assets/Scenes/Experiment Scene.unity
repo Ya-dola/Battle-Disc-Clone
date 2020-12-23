@@ -270,7 +270,7 @@ MonoBehaviour:
   enemyDetectionRadius: 3
   discSpeed: 18
   discSpeedDif: 2
-  discLerpMoveTime: 4
+  discLerpMoveTime: 1
   bounceRandIterator: 6
   bounceBias: 1
   discRepositionZDistance: 1
