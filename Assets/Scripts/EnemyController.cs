@@ -178,7 +178,8 @@ public class EnemyController : MonoBehaviour
         if (!launchPosDecided)
         {
             // Determining the Launch Position of the Enemy
-            launchPos = new Vector3(transform.position.x + Random.Range(-GameManager.singleton.enemyLaunchVariance, GameManager.singleton.enemyLaunchVariance),
+            launchPos = new Vector3(transform.position.x + Random.Range(-GameManager.singleton.enemyLaunchVariance,
+                                                                        GameManager.singleton.enemyLaunchVariance),
                                     transform.position.y,
                                     transform.position.z + Random.Range(0f, -GameManager.singleton.enemyLaunchVariance));
 
@@ -196,7 +197,7 @@ public class EnemyController : MonoBehaviour
         else
         {
             Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - Disc.transform.position) *
-                                                                   GameManager.singleton.discSpeed;
+                                                                        GameManager.singleton.discSpeed;
 
             Disc.layer = LayerMask.NameToLayer("Disc Launched");
 

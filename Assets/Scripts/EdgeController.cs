@@ -5,7 +5,7 @@ using UnityEngine;
 public class EdgeController : MonoBehaviour
 {
     public GameObject Disc;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +18,13 @@ public class EdgeController : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
-        
+        // To check if the disc collided with the Arena Edge
+        if (!collision.gameObject.Equals(Disc))
+            return;
 
         if (!GameManager.singleton.DiscCollidedOnce)
             GameManager.singleton.SetDiscCollidedOnce(true);
-
-        // Debug.Log("Disc Collided with Edge");
     }
 }

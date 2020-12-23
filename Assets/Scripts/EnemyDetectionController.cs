@@ -18,12 +18,6 @@ public class EnemyDetectionController : MonoBehaviour
         detectionCollider.radius = GameManager.singleton.enemyDetectionRadius;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnTriggerEnter(Collider collider)
     {
         // To check if the disc is within the enemy detection area or not

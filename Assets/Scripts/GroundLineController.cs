@@ -5,17 +5,7 @@ using UnityEngine;
 public class GroundLineController : MonoBehaviour
 {
     public GameObject Disc;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     void OnTriggerExit(Collider collider)
     {
         // To check if the disc passes through the centre line of the Arena

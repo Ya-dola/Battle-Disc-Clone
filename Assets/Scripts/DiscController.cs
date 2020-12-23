@@ -13,12 +13,6 @@ public class DiscController : MonoBehaviour
         discRigBody = GetComponent<Rigidbody>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -33,7 +27,7 @@ public class DiscController : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Disc");
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         // To work only when the Game has started
         if (!GameManager.singleton.GameStarted)

@@ -7,7 +7,7 @@ public class DestructableController : MonoBehaviour
     public GameObject Disc;
     public GameObject DestBrokenPrefab;
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         // To check if the disc collided with the destructable
         if (!collision.gameObject.Equals(Disc))
