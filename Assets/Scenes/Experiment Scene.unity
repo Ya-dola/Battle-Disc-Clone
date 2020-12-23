@@ -262,8 +262,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDragSpeed: 0.025
-  enemyPositionRadius: 1
-  enemyState: 0
+  enemyPositionRadius: 0.25
+  enemyIdleTime: 3
+  enemyMoveSpeed: 4
   discSpeed: 18
   discLerpMoveTime: 4
   bounceRandIterator: 6
@@ -700,11 +701,11 @@ PrefabInstance:
     - target: {fileID: 7395099318807196112, guid: 2e4778bafd4c7bd45b97bcb06bd532be, type: 3}
       propertyPath: enemyPositions.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 35599142}
     - target: {fileID: 7395099318807196112, guid: 2e4778bafd4c7bd45b97bcb06bd532be, type: 3}
       propertyPath: enemyPositions.Array.data[2]
       value: 
-      objectReference: {fileID: 1670751942}
+      objectReference: {fileID: 1158328382}
     - target: {fileID: 7395099318807196112, guid: 2e4778bafd4c7bd45b97bcb06bd532be, type: 3}
       propertyPath: enemyPositions.Array.data[3]
       value: 

@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     public GameObject[] enemyPositions;
 
     private int positionIndex;
+    private float idleTimer;
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         positionIndex = 0;
+        GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
     }
 
     // Fixed Update used mainly for Physics Calculations
@@ -108,16 +110,68 @@ public class EnemyController : MonoBehaviour
         //     }
         // }
 
-        // // To Set the Destination of the Enemy
+        // To Set the Destination of the Enemy
         // enemyNavMeshAgent.SetDestination(enemyPositions[positionIndex].transform.position);
 
-        // switch (GameManager.singleton.enemyState)
-        // {
-        //     default:
-        //     case GameManager.EnemyStateEnum.Roaming:
+        switch (GameManager.singleton.enemyState)
+        {
+            default:
+            case GameManager.EnemyStateEnum.Idle:
+                EnemyIdleState();
+                break;
+            case GameManager.EnemyStateEnum.Roaming:
+                EnemyRoamingState();
+                break;
+                // case GameManager.EnemyStateEnum.ChasingDisc:
+                //     EnemyRoamingState();
+                //     break;
+                // case GameManager.EnemyStateEnum.CaughtDisc:
+                //     EnemyRoamingState();
+                //     break;
+        }
+    }
 
-        //         break;
-        // }
+    private void EnemyIdleState()
+    {
+        if (idleTimer > 0)
+        {
+            idleTimer -= Time.deltaTime;
+        }
+        else
+        {
+            if (positionIndex < enemyPositions.Length)
+            {
+                // To check if the distance between the enemy and it's current target position is less than the position's radius
+                if (Vector3.Distance(enemyPositions[positionIndex].transform.position, gameObject.transform.position) < GameManager.singleton.enemyPositionRadius)
+                {
+                    if (positionIndex + 1 == enemyPositions.Length)
+                        positionIndex = 0;
+                    else
+                        positionIndex++;
+                }
+            }
+
+            // To reset the timer
+            idleTimer = 0;
+
+            // To move to the next roaming position
+            GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
+        }
+    }
+
+    private void EnemyRoamingState()
+    {
+        transform.position = Vector3.MoveTowards(transform.position,
+                                                 enemyPositions[positionIndex].transform.position,
+                                                 GameManager.singleton.enemyMoveSpeed * Time.deltaTime);
+
+        // To check if the distance between the enemy and it's current target position is less than the position's radius
+        if (Vector3.Distance(transform.position, enemyPositions[positionIndex].transform.position) < GameManager.singleton.enemyPositionRadius)
+        {
+            GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Idle;
+
+            idleTimer = GameManager.singleton.enemyIdleTime;
+        }
     }
 
     private void LaunchDisc()

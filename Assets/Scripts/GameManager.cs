@@ -27,15 +27,17 @@ public class GameManager : MonoBehaviour
 
     [Header("Enemy")]
     public float enemyPositionRadius;
+    public float enemyIdleTime;
+    public float enemyMoveSpeed;
     [HideInInspector]
     public enum EnemyStateEnum
     {
+        Idle,
         Roaming,
         ChasingDisc,
         CaughtDisc
     }
-    [HideInInspector]
-    public EnemyStateEnum enemyState;
+    public EnemyStateEnum enemyState { get; set; }
 
     [Header("Disc")]
     // [Range(0, 100)]
@@ -87,13 +89,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        debugText.text = "Game Started: " + GameStarted + "\n" +
+        debugText.text =
+                         // "Game Started: " + GameStarted + "\n" +
                          "Player Disc Caught: " + PlayerDiscCaught + "\n" +
                          "Player Reposition Disc: " + PlayerRepositionDisc + "\n" +
                          "Disc Collided Once: " + DiscCollidedOnce + "\n" +
                          "Enemy Disc Caught: " + EnemyDiscCaught + "\n" +
                          "Enemy Reposition Disc: " + EnemyRepositionDisc + "\n" +
-                         "Bounce Count: " + bounceCount + "\n";
+                         "Enemy State: " + enemyState + "\n"
+                         //  "Bounce Count: " + bounceCount + "\n"
+                         ;
     }
 
     public void StartGame()
