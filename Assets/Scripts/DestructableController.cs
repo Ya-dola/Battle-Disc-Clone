@@ -30,14 +30,18 @@ public class DestructableController : MonoBehaviour
 
             for (int i = 0; i < destBroken.transform.childCount; i++)
             {
-                // Assigning the Destructable's Material to the Broken Parts of the Destructable
-                destBroken.transform.GetChild(i).GetComponent<Renderer>().material = GetComponent<Renderer>().material;
+                // To avoid affecting the Black Smoke Particles of Broken Destucables 
+                if (destBroken.transform.GetChild(i).GetComponent<ParticleSystem>() == null)
+                {
+                    // Assigning the Destructable's Material to the Broken Parts of the Destructable
+                    destBroken.transform.GetChild(i).GetComponent<Renderer>().material = GetComponent<Renderer>().material;
 
-                // Giving an Upwards Explosive force to the Broken Parts
-                destBroken.transform.GetChild(i).GetComponent<Rigidbody>().AddExplosionForce(GameManager.singleton.destExplosionForce,
-                                                                                             transform.position,
-                                                                                             GameManager.singleton.destExplosionRadius,
-                                                                                             GameManager.singleton.destExplosionUpwardsMod);
+                    // Giving an Upwards Explosive force to the Broken Parts
+                    destBroken.transform.GetChild(i).GetComponent<Rigidbody>().AddExplosionForce(GameManager.singleton.destExplosionForce,
+                                                                                                 transform.position,
+                                                                                                 GameManager.singleton.destExplosionRadius,
+                                                                                                 GameManager.singleton.destExplosionUpwardsMod);
+                }
             }
 
             Destroy(gameObject);
