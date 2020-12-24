@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     public float discSpeed;
     [Range(0, 4f)]
     public float discSpeedDif;
-    public float discLerpMoveTime;
+    public float discRepositionTime;
     public int bounceRandIterator;
     [Range(0, 1)]
     public float bounceBias;

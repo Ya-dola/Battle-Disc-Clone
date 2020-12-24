@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     // public float playerMoveSpeed;
 
     // private Rigidbody playerRigBody;
-    // private Animator playerAnimator;
+    private Animator playerAnimator;
     private Vector2 lastMousePos;
 
     public GameObject LaunchIndicator;
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         // playerRigBody = GetComponent<Rigidbody>();
-        // playerAnimator = GetComponentInChildren<Animator>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -35,11 +35,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DragPlayer();
+        if (Input.GetMouseButton(0))
+            // Signals the Game has started and only runs it once if the game has already started
+            if (!GameManager.singleton.GameStarted)
+                GameManager.singleton.StartCameraTransition();
+
+        // To perform Updates on which animation should be playing for the Player
+        AnimationUpdates();
 
         // To work only when the Game has started
         if (!GameManager.singleton.GameStarted)
             return;
+
+        DragPlayer();
 
         LaunchDisc();
 
@@ -90,10 +98,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            // Signals the Game has started and only runs it once if the game has already started
-            if (!GameManager.singleton.GameStarted)
-                GameManager.singleton.StartCameraTransition();
-
             Vector2 currentMousePos = Input.mousePosition;
 
             if (lastMousePos == Vector2.zero)
@@ -107,6 +111,8 @@ public class PlayerController : MonoBehaviour
                     transform.position.y,
                     transform.position.z + deltaMousePos.y * GameManager.singleton.playerDragSpeed
                 );
+
+            playerAnimator.SetBool("CharacterMoving", true);
         }
         else
             lastMousePos = Vector2.zero;
@@ -163,6 +169,8 @@ public class PlayerController : MonoBehaviour
 
             GameManager.singleton.Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
+            playerAnimator.SetBool("DiscLaunched", true);
+
             // To reset disc conditions
             GameManager.singleton.SetPlayerDiscCaught(false);
             GameManager.singleton.SetDiscCollidedOnce(false);
@@ -211,10 +219,23 @@ public class PlayerController : MonoBehaviour
         // To reposition the Disc behind the Player when Caught
         GameManager.singleton.Disc.transform.position = Vector3.Lerp(GameManager.singleton.Disc.transform.position,
                                                                      discRepositionedPos,
-                                                                     GameManager.singleton.discLerpMoveTime * Time.fixedDeltaTime);
+                                                                     GameManager.singleton.discRepositionTime * Time.fixedDeltaTime);
 
         // To indicate the disc has repositioned
         if (GameManager.singleton.Disc.transform.position == discRepositionedPos)
             GameManager.singleton.SetPlayerRepositionDisc(false);
+    }
+
+    // To perform Updates on which animation should be playing for the Player
+    private void AnimationUpdates()
+    {
+        if (!playerAnimator.GetBool("GameStarted"))
+            playerAnimator.SetBool("GameStarted", GameManager.singleton.GameStarted);
+
+        if (playerAnimator.GetBool("DiscLaunched") && !GameManager.singleton.PlayerDiscCaught)
+            playerAnimator.SetBool("DiscLaunched", false);
+
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+            playerAnimator.SetBool("CharacterMoving", false);
     }
 }

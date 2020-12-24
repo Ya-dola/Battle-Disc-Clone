@@ -263,7 +263,7 @@ public class EnemyController : MonoBehaviour
         // To reposition the Disc behind the Enemy when Caught
         GameManager.singleton.Disc.transform.position = Vector3.Lerp(GameManager.singleton.Disc.transform.position,
                                                                      discRepositionedPos,
-                                                                     GameManager.singleton.discLerpMoveTime * Time.fixedDeltaTime);
+                                                                     GameManager.singleton.discRepositionTime * Time.fixedDeltaTime);
 
         // To indicate the disc has repositioned
         if (GameManager.singleton.Disc.transform.position == discRepositionedPos)
