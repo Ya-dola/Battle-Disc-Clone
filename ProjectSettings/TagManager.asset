@@ -13,6 +13,7 @@ TagManager:
   - Destructable Broken
   - Disc
   - Enemy
+  - Enemy Position
   layers:
   - Default
   - TransparentFX

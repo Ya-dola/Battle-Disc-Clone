@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public Vector3 lastEnemyPos { get; set; }
 
     [Header("Player")]
-    [Range(0, 1)]
+    [Range(0, 0.2f)]
     public float playerDragSpeed;
     public Vector3 lastPlayerPos { get; set; }
 
