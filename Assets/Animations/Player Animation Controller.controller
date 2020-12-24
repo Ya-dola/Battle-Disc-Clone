@@ -98,7 +98,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 784fcead3f2e6f94ca922e78f5d365e1, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 99bd4e1ae80d21d47a50adf300c54e3e, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -151,7 +151,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Walking
-  m_Speed: 0.75
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -3918196167894341803}
@@ -165,7 +165,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 784fcead3f2e6f94ca922e78f5d365e1, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 99bd4e1ae80d21d47a50adf300c54e3e, type: 3}
   m_Tag: 
   m_SpeedParameter: Blend
   m_MirrorParameter: CharacterMoving

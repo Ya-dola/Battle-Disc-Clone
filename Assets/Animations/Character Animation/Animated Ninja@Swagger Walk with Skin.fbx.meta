@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 92eb5465200ab1f46b0b23c73bbe942f
+guid: 99bd4e1ae80d21d47a50adf300c54e3e
 ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: T-Pose
+    second: Swagger Walk with Skin
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: T-Pose
+      name: Swagger Walk with Skin
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 1
+      lastFrame: 84
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -104,11 +104,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 784fcead3f2e6f94ca922e78f5d365e1
-  - aeaf3586c59e8da4da27492300352048
-  - 99bd4e1ae80d21d47a50adf300c54e3e
-  - 706573f44f4955f43bc36f175db29d0a
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
