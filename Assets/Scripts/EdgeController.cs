@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class EdgeController : MonoBehaviour
 {
-    public GameObject Disc;
-
     void OnCollisionEnter(Collision collision)
     {
         // To check if the disc collided with the Arena Edge
-        if (!collision.gameObject.Equals(Disc))
+        if (!collision.gameObject.Equals(GameManager.singleton.Disc))
             return;
 
         if (!GameManager.singleton.DiscCollidedOnce)

@@ -268,6 +268,7 @@ MonoBehaviour:
   enemyLaunchDelayTime: 2
   enemyPositionRadius: 0.1
   enemyDetectionRadius: 3
+  Disc: {fileID: 641194749}
   discSpeed: 18
   discSpeedDif: 2
   discLerpMoveTime: 1
@@ -1700,7 +1701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7756a8567ea9f3e4e8a4b6dc3ad009ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Disc: {fileID: 641194749}
   DestBrokenPrefab: {fileID: 2561429651018593741, guid: 43956885c9c7d6c49b2fbe540e03708c, type: 3}
 --- !u!4 &1361246531 stripped
 Transform:
@@ -3693,7 +3693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1689262538280302128, guid: 35edbaf181cf90f4f8ed10dd1133166a, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1689262538280302128, guid: 35edbaf181cf90f4f8ed10dd1133166a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3880,7 +3880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2121095232
 MonoBehaviour:
   m_ObjectHideFlags: 0

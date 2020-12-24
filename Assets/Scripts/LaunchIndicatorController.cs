@@ -5,7 +5,6 @@ using UnityEngine;
 public class LaunchIndicatorController : MonoBehaviour
 {
     public GameObject Player;
-    public GameObject Disc;
 
     private Vector3 indicatorDirection;
     private float indicatorAngle;
@@ -16,7 +15,7 @@ public class LaunchIndicatorController : MonoBehaviour
         // Runs only when the Indicator is active
         if (gameObject.activeSelf)
         {
-            indicatorDirection = Vector3.Normalize(Player.transform.position - Disc.transform.position);
+            indicatorDirection = Vector3.Normalize(Player.transform.position - GameManager.singleton.Disc.transform.position);
             indicatorAngle = Mathf.Atan2(indicatorDirection.x, indicatorDirection.z) * Mathf.Rad2Deg;
 
             transform.rotation = Quaternion.AngleAxis(indicatorAngle, Vector3.up);

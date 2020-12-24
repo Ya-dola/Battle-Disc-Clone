@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class DestructableController : MonoBehaviour
 {
-    public GameObject Disc;
     public GameObject DestBrokenPrefab;
 
     void OnCollisionEnter(Collision collision)
     {
         // To check if the disc collided with the destructable
-        if (!collision.gameObject.Equals(Disc))
+        if (!collision.gameObject.Equals(GameManager.singleton.Disc))
             return;
 
         // To indicate that the disc has already collided once if it already hasn't
@@ -20,8 +19,8 @@ public class DestructableController : MonoBehaviour
         // To reset the bounce count on disc collision with a destructable
         GameManager.singleton.bounceCount = 0;
 
-        if ((Disc.tag == "Player Disc" & gameObject.tag == "Enemy Dest") ||
-            Disc.tag == "Enemy Disc" & gameObject.tag == "Player Dest")
+        if ((GameManager.singleton.Disc.tag == "Player Disc" & gameObject.tag == "Enemy Dest") ||
+            GameManager.singleton.Disc.tag == "Enemy Disc" & gameObject.tag == "Player Dest")
         {
 
             // Debug.Log("Disc Collided with Destructable");

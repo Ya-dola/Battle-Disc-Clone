@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     // private Animator enemyAnimator;
-    public GameObject Disc;
     private Vector3 discRepositionedPos;
 
     [Header("Enemy AI Movement")]
@@ -177,7 +176,7 @@ public class EnemyController : MonoBehaviour
         if (!GameManager.singleton.EnemyDiscCaught)
             // Moving the Enemy from it's current position to the disc's position
             transform.position = Vector3.MoveTowards(transform.position,
-                                                     Disc.transform.position,
+                                                     GameManager.singleton.Disc.transform.position,
                                                      GameManager.singleton.enemyMoveSpeed * Time.fixedDeltaTime);
         else
             // To Transition the Enemy to the CaughtDisc State
@@ -207,10 +206,11 @@ public class EnemyController : MonoBehaviour
             launchTimer -= Time.fixedDeltaTime;
         else
         {
-            Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - Disc.transform.position) *
-                                                                        GameManager.singleton.discSpeed;
+            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position -
+                                                                                              GameManager.singleton.Disc.transform.position) *
+                                                                            GameManager.singleton.discSpeed;
 
-            Disc.layer = LayerMask.NameToLayer("Disc Launched");
+            GameManager.singleton.Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
             // To reset disc conditions
             GameManager.singleton.SetEnemyDiscCaught(false);
@@ -230,7 +230,7 @@ public class EnemyController : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         // Catching the Disc
-        if (collider.gameObject.Equals(Disc))
+        if (collider.gameObject.Equals(GameManager.singleton.Disc))
         {
             GameManager.singleton.SetEnemyDiscCaught(true);
 
@@ -238,12 +238,12 @@ public class EnemyController : MonoBehaviour
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.CaughtDisc;
 
             // To Stop the Disc on Collision with the Enemy
-            Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
             // To indicate that the disc was last caught by the Enemy
-            Disc.tag = "Enemy Disc";
-            Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.enemyMaterial;
-            Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.enemyMaterial;
+            GameManager.singleton.Disc.tag = "Enemy Disc";
+            GameManager.singleton.Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.enemyMaterial;
+            GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.enemyMaterial;
 
             // To reposition the disc on collision
             GameManager.singleton.lastEnemyPos = transform.position;
@@ -261,12 +261,12 @@ public class EnemyController : MonoBehaviour
                                           GameManager.singleton.lastEnemyPos.z + GameManager.singleton.discRepositionZDistance);
 
         // To reposition the Disc behind the Enemy when Caught
-        Disc.transform.position = Vector3.Lerp(Disc.transform.position,
-                                                discRepositionedPos,
-                                                GameManager.singleton.discLerpMoveTime * Time.fixedDeltaTime);
+        GameManager.singleton.Disc.transform.position = Vector3.Lerp(GameManager.singleton.Disc.transform.position,
+                                                                     discRepositionedPos,
+                                                                     GameManager.singleton.discLerpMoveTime * Time.fixedDeltaTime);
 
         // To indicate the disc has repositioned
-        if (Disc.transform.position == discRepositionedPos)
+        if (GameManager.singleton.Disc.transform.position == discRepositionedPos)
             GameManager.singleton.SetEnemyRepositionDisc(false);
     }
 }

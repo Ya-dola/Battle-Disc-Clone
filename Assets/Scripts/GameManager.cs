@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public EnemyStateEnum enemyState { get; set; }
 
     [Header("Disc")]
+    public GameObject Disc;
     [Range(0, 24f)]
     public float discSpeed;
     [Range(0, 4f)]

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyDetectionController : MonoBehaviour
 {
-    public GameObject Disc;
     private SphereCollider detectionCollider;
 
     void Awake()
@@ -15,13 +14,14 @@ public class EnemyDetectionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // To Set the size of the Detection Radius as the Scene Starts
         detectionCollider.radius = GameManager.singleton.enemyDetectionRadius;
     }
 
     void OnTriggerEnter(Collider collider)
     {
         // To check if the disc is within the enemy detection area or not
-        if (collider.gameObject.Equals(Disc))
+        if (collider.gameObject.Equals(GameManager.singleton.Disc))
             // To transition the Enemy to the ChasingDisc state
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.ChasingDisc;
     }
@@ -29,7 +29,7 @@ public class EnemyDetectionController : MonoBehaviour
     void OnTriggerExit(Collider collider)
     {
         // To indicate that the disc left the detection area of the enemy
-        if (collider.gameObject.Equals(Disc))
+        if (collider.gameObject.Equals(GameManager.singleton.Disc))
             // To transition the Enemy to the Roaming state
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
     }

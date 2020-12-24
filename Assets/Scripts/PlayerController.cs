@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     // private Animator playerAnimator;
     private Vector2 lastMousePos;
 
-    public GameObject Disc;
     public GameObject LaunchIndicator;
     private Vector3 discRepositionedPos;
 
@@ -159,10 +158,10 @@ public class PlayerController : MonoBehaviour
         // To only run when the disc is caught and has already collided once with any object besides the Player
         if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.PlayerDiscCaught)
         {
-            Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - Disc.transform.position) *
+            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - GameManager.singleton.Disc.transform.position) *
                                                         GameManager.singleton.discSpeed;
 
-            Disc.layer = LayerMask.NameToLayer("Disc Launched");
+            GameManager.singleton.Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
             // To reset disc conditions
             GameManager.singleton.SetPlayerDiscCaught(false);
@@ -176,7 +175,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         // Catching the Disc
-        if (collider.gameObject.Equals(Disc))
+        if (collider.gameObject.Equals(GameManager.singleton.Disc))
         {
             // To ensure that the Collision Effect does not occur more than once 
             if (GameManager.singleton.PlayerDiscCaught)
@@ -187,12 +186,12 @@ public class PlayerController : MonoBehaviour
             LaunchIndicator.gameObject.SetActive(true);
 
             // To Stop the Disc on Collision with the Player
-            Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
             // To indicate that the disc was last caught by the Player
-            Disc.tag = "Player Disc";
-            Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.playerMaterial;
-            Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.playerMaterial;
+            GameManager.singleton.Disc.tag = "Player Disc";
+            GameManager.singleton.Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.playerMaterial;
+            GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.playerMaterial;
 
             // To reposition the disc on collision
             GameManager.singleton.lastPlayerPos = transform.position;
@@ -210,12 +209,12 @@ public class PlayerController : MonoBehaviour
                                           GameManager.singleton.lastPlayerPos.z - GameManager.singleton.discRepositionZDistance);
 
         // To reposition the Disc behind the Player when Caught
-        Disc.transform.position = Vector3.Lerp(Disc.transform.position,
-                                                discRepositionedPos,
-                                                GameManager.singleton.discLerpMoveTime * Time.fixedDeltaTime);
+        GameManager.singleton.Disc.transform.position = Vector3.Lerp(GameManager.singleton.Disc.transform.position,
+                                                                     discRepositionedPos,
+                                                                     GameManager.singleton.discLerpMoveTime * Time.fixedDeltaTime);
 
         // To indicate the disc has repositioned
-        if (Disc.transform.position == discRepositionedPos)
+        if (GameManager.singleton.Disc.transform.position == discRepositionedPos)
             GameManager.singleton.SetPlayerRepositionDisc(false);
     }
 }
