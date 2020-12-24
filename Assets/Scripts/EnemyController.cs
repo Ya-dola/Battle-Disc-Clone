@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // private Animator enemyAnimator;
+    private Animator enemyAnimator;
     private Vector3 discRepositionedPos;
 
     [Header("Enemy AI Movement")]
@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
 
     void Awake()
     {
-        // enemyAnimator = GetComponentInChildren<Animator>();
+        enemyAnimator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -41,6 +41,9 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // To perform Updates on which animation should be playing for the Enemy
+        AnimationUpdates();
+
         // To work only when the Game has started
         if (!GameManager.singleton.GameStarted)
             return;
@@ -212,6 +215,8 @@ public class EnemyController : MonoBehaviour
 
             GameManager.singleton.Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
+            enemyAnimator.SetBool("DiscLaunched", true);
+
             // To reset disc conditions
             GameManager.singleton.SetEnemyDiscCaught(false);
             GameManager.singleton.SetDiscCollidedOnce(false);
@@ -268,5 +273,23 @@ public class EnemyController : MonoBehaviour
         // To indicate the disc has repositioned
         if (GameManager.singleton.Disc.transform.position == discRepositionedPos)
             GameManager.singleton.SetEnemyRepositionDisc(false);
+    }
+
+    // To perform Updates on which animation should be playing for the Player
+    private void AnimationUpdates()
+    {
+        if (!enemyAnimator.GetBool("GameStarted"))
+            enemyAnimator.SetBool("GameStarted", GameManager.singleton.GameStarted);
+
+        if (enemyAnimator.GetBool("DiscLaunched") && !GameManager.singleton.EnemyDiscCaught)
+            enemyAnimator.SetBool("DiscLaunched", false);
+
+        if (GameManager.singleton.enemyState == GameManager.EnemyStateEnum.Idle)
+            enemyAnimator.SetBool("CharacterMoving", false);
+
+        if (GameManager.singleton.enemyState == GameManager.EnemyStateEnum.ChasingDisc ||
+            GameManager.singleton.enemyState == GameManager.EnemyStateEnum.Roaming)
+            enemyAnimator.SetBool("CharacterMoving", true);
+
     }
 }

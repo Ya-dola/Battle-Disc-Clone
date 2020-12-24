@@ -107,8 +107,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101283467853183940}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 728f6ad2b27850b428c6447c047db511, type: 3}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 174cb92d8e467ec43b00e2e231ecf9b1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -142,7 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6dc582544876e49aa5ddfe6ece3f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Disc: {fileID: 0}
   enemyPositions:
   - {fileID: 0}
   - {fileID: 0}
@@ -5231,7 +5230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28fe33e965924554eb9936562804963a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Disc: {fileID: 0}
 --- !u!1 &2223392028226263908
 GameObject:
   m_ObjectHideFlags: 0
