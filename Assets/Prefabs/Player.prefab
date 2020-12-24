@@ -6520,7 +6520,7 @@ GameObject:
   - component: {fileID: 2138524623595506463}
   - component: {fileID: 5163409944161587450}
   m_Layer: 11
-  m_Name: Character Launch
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6908,7 +6908,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: dfedec611a271b74f9b82f63ee495c36, type: 2}
     - target: {fileID: 1654785446530867812, guid: 4eee0fd6f7ba0a043ac979596037f21d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.6
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 1654785447491295680, guid: 4eee0fd6f7ba0a043ac979596037f21d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6958,6 +6958,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Launch Indicator
       objectReference: {fileID: 0}
+    - target: {fileID: 1654785447491295695, guid: 4eee0fd6f7ba0a043ac979596037f21d, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 7631385700052191369}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4eee0fd6f7ba0a043ac979596037f21d, type: 3}
 --- !u!4 &440266444186020570 stripped

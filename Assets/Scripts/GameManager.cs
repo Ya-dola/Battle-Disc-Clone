@@ -47,7 +47,8 @@ public class GameManager : MonoBehaviour
     public EnemyStateEnum enemyState { get; set; }
 
     [Header("Disc")]
-    public GameObject Disc;
+    public Vector3 discStartingPos;
+    public GameObject Disc { get; set; }
     [Range(0, 24f)]
     public float discSpeed;
     [Range(0, 4f)]
@@ -104,6 +105,9 @@ public class GameManager : MonoBehaviour
 
         // To Assign the Game Object's Materials according to their tag
         AssignGameObjMaterials();
+
+        // To Assign the Active Disc as the Disc for the Scene
+        AssignActiveDisc();
     }
 
     // Update is called once per frame
@@ -198,6 +202,18 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("Enemy"))
             gameObj.GetComponentInChildren<Renderer>().material = enemyMaterial;
+    }
+
+    private void AssignActiveDisc()
+    {
+        if (GameObject.FindGameObjectWithTag("Player Disc") != null)
+            Disc = GameObject.FindGameObjectWithTag("Player Disc");
+        else if (GameObject.FindGameObjectWithTag("Enemy Disc") != null)
+            Disc = GameObject.FindGameObjectWithTag("Enemy Disc");
+
+        // Setting the Defaults for the Disc before the Scene Starts
+        Disc.tag = "Player Disc";
+        Disc.transform.position = discStartingPos;
     }
 
     // Setters

@@ -262,13 +262,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDragSpeed: 0.025
-  enemyMoveSpeed: 2
+  enemyMoveSpeed: 2.5
   enemyLaunchVariance: 2.75
-  enemyIdleTime: 3
+  enemyIdleTime: 2.5
   enemyLaunchDelayTime: 0.75
   enemyPositionRadius: 0.1
   enemyDetectionRadius: 3.5
-  Disc: {fileID: 641194749}
+  discStartingPos: {x: 0, y: 0, z: -6.5}
   discSpeed: 18
   discSpeedDif: 2
   discRepositionTime: 1
@@ -1429,10 +1429,6 @@ PrefabInstance:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8914904447660003675, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
-      propertyPath: m_TagString
-      value: Player Disc
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
 --- !u!1 &1158328382
@@ -1908,30 +1904,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3553366773119789039, guid: 1438d7228c70c5c44a2733a620286be8, type: 3}
   m_PrefabInstance: {fileID: 1404261395}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1490900299 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8561527813628755907, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
-  m_PrefabInstance: {fileID: 1835292145}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1490900301
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1490900299}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 728f6ad2b27850b428c6447c047db511, type: 3}
-  m_Controller: {fileID: 9100000, guid: 22fd8be2f0f168941a28ac1923899c79, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1535951916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2730,21 +2702,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 440266444186020565, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 1835292146}
-    - target: {fileID: 440266444186020565, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
       propertyPath: Disc
       value: 
       objectReference: {fileID: 641194749}
-    - target: {fileID: 440266445238718846, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 440266445238718846, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 440266445238718847, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -2799,11 +2759,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
---- !u!1 &1835292146 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7631385700052191369, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
-  m_PrefabInstance: {fileID: 1835292145}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1962256735
 PrefabInstance:
   m_ObjectHideFlags: 0
