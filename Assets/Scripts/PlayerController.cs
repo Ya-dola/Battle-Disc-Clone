@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         {
             // Signals the Game has started and only runs it once if the game has already started
             if (!GameManager.singleton.GameStarted)
-                GameManager.singleton.StartGame();
+                GameManager.singleton.StartCameraTransition();
 
             Vector2 currentMousePos = Input.mousePosition;
 

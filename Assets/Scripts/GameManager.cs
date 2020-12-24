@@ -61,6 +61,12 @@ public class GameManager : MonoBehaviour
     [Range(0.4f, 1f)]
     public float discRepositionZDistance;
 
+    [Header("Camera")]
+    public float camFovStart;
+    public float camFovEnd;
+    public float camFovTransitionSpeed;
+    private bool camStartTransition;
+
     [Header("Arena")]
     public float sideEdgeDistance;
     public float topBotEdgeDistance;
@@ -93,6 +99,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Setting Default Values
+        camStartTransition = false;
+
         // To Assign the Game Object's Materials according to their tag
         AssignGameObjMaterials();
     }
@@ -110,6 +119,33 @@ public class GameManager : MonoBehaviour
                          "Enemy State: " + enemyState + "\n"
                          //  "Bounce Count: " + bounceCount + "\n"
                          ;
+
+        // Camera Transition before Starting the Game
+        if (camStartTransition)
+        {
+            if (Camera.main.fieldOfView > camFovEnd)
+                Camera.main.fieldOfView -= camFovTransitionSpeed * Time.fixedDeltaTime;
+            else
+            {
+                Camera.main.fieldOfView = camFovEnd;
+                camStartTransition = false;
+
+                // Starting the Game if the Camera has transitioned to zoomed in FOV
+                StartGame();
+            }
+        }
+    }
+
+    public void StartCameraTransition()
+    {
+        // Camera Transition before Starting the Game
+        if (Camera.main.fieldOfView == camFovStart)
+            camStartTransition = true;
+
+        // Starting the Game if the Camera has transitioned to zoomed in FOV
+        if (Camera.main.fieldOfView == camFovEnd)
+            if (!GameStarted)
+                StartGame();
     }
 
     public void StartGame()
