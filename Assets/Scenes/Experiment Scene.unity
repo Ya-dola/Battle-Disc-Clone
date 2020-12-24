@@ -3083,7 +3083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4529165495357383234, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
       propertyPath: m_Name
-      value: Black Smoke Particle System
+      value: Smoke Particle System
       objectReference: {fileID: 0}
     - target: {fileID: 4612603906663885433, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
       propertyPath: m_Layer
