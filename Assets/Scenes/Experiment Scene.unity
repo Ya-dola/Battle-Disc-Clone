@@ -264,7 +264,7 @@ MonoBehaviour:
   playerDragSpeed: 0.025
   enemyMoveSpeed: 2.5
   enemyLaunchVariance: 2.75
-  enemyIdleTime: 2.5
+  enemyIdleTime: 2
   enemyLaunchDelayTime: 0.75
   enemyPositionRadius: 0.1
   enemyDetectionRadius: 3.5
@@ -275,6 +275,10 @@ MonoBehaviour:
   bounceRandIterator: 6
   bounceBias: 1
   discRepositionZDistance: 1
+  enemyPositions:
+  - {fileID: 1670751942}
+  - {fileID: 35599142}
+  - {fileID: 1158328382}
   camFovStart: 64
   camFovEnd: 54
   camFovTransitionSpeed: 8
@@ -2292,7 +2296,7 @@ GameObject:
   - component: {fileID: 1644131086}
   m_Layer: 0
   m_Name: Enemy Positions
-  m_TagString: Enemy Position
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

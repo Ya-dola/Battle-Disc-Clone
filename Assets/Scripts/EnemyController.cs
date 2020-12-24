@@ -7,10 +7,8 @@ public class EnemyController : MonoBehaviour
     private Animator enemyAnimator;
     private Vector3 discRepositionedPos;
 
-    [Header("Enemy AI Movement")]
-    public GameObject[] enemyPositions;
-
     private int positionIndex;
+    private int tempPositionIndex;
     private float idleTimer;
     private float launchTimer;
     private Vector3 launchPos;
@@ -138,23 +136,19 @@ public class EnemyController : MonoBehaviour
             idleTimer -= Time.fixedDeltaTime;
         else
         {
-            if (positionIndex < enemyPositions.Length)
+            // To get the next position index randomly without staying at the same position again
+            tempPositionIndex = Random.Range(0, GameManager.singleton.enemyPositions.Length);
+
+            if (tempPositionIndex != positionIndex)
             {
-                // To check if the distance between the enemy and it's current target position is less than the position's radius
-                if (Vector3.Distance(enemyPositions[positionIndex].transform.position, gameObject.transform.position) < GameManager.singleton.enemyPositionRadius)
-                {
-                    if (positionIndex + 1 == enemyPositions.Length)
-                        positionIndex = 0;
-                    else
-                        positionIndex++;
-                }
+                positionIndex = tempPositionIndex;
+
+                // To reset the Idle timer
+                idleTimer = 0;
+
+                // To transition the Enemy to the Roaming state
+                GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
             }
-
-            // To reset the Idle timer
-            idleTimer = 0;
-
-            // To transition the Enemy to the Roaming state
-            GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Roaming;
         }
     }
 
@@ -162,11 +156,12 @@ public class EnemyController : MonoBehaviour
     {
         // Moving the Enemy from it's current position to the other
         transform.position = Vector3.MoveTowards(transform.position,
-                                                 enemyPositions[positionIndex].transform.position,
+                                                 GameManager.singleton.enemyPositions[positionIndex].transform.position,
                                                  GameManager.singleton.enemyMoveSpeed * Time.fixedDeltaTime);
 
         // To check if the distance between the enemy and it's current target position is less than the position's radius
-        if (Vector3.Distance(transform.position, enemyPositions[positionIndex].transform.position) < GameManager.singleton.enemyPositionRadius)
+        if (Vector3.Distance(transform.position,
+                             GameManager.singleton.enemyPositions[positionIndex].transform.position) < GameManager.singleton.enemyPositionRadius)
         {
             // To start the idle timer and transition the Enemy to the Idle state
             GameManager.singleton.enemyState = GameManager.EnemyStateEnum.Idle;

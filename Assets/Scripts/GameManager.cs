@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         CaughtDisc
     }
     public EnemyStateEnum enemyState { get; set; }
+    public GameObject[] enemyPositions { get; set; }
 
     [Header("Disc")]
     public Vector3 discStartingPos;
@@ -58,7 +59,6 @@ public class GameManager : MonoBehaviour
     [Range(0, 1)]
     public float bounceBias;
     public int bounceCount { get; set; }
-
     [Range(0.4f, 1f)]
     public float discRepositionZDistance;
 
@@ -108,6 +108,9 @@ public class GameManager : MonoBehaviour
 
         // To Assign the Active Disc as the Disc for the Scene
         AssignActiveDisc();
+
+        // To Assign the Active Enemy Positions for the Scene
+        AssignActiveEnemyPositions();
     }
 
     // Update is called once per frame
@@ -214,6 +217,11 @@ public class GameManager : MonoBehaviour
         // Setting the Defaults for the Disc before the Scene Starts
         Disc.tag = "Player Disc";
         Disc.transform.position = discStartingPos;
+    }
+
+    private void AssignActiveEnemyPositions()
+    {
+        enemyPositions = GameObject.FindGameObjectsWithTag("Enemy Position");
     }
 
     // Setters
