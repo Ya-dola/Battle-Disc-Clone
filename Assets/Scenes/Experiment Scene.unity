@@ -262,12 +262,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDragSpeed: 0.025
-  enemyMoveSpeed: 1
-  enemyLaunchVariance: 2
-  enemyIdleTime: 8
-  enemyLaunchDelayTime: 2
+  enemyMoveSpeed: 2
+  enemyLaunchVariance: 2.75
+  enemyIdleTime: 3
+  enemyLaunchDelayTime: 0.75
   enemyPositionRadius: 0.1
-  enemyDetectionRadius: 3
+  enemyDetectionRadius: 3.5
   Disc: {fileID: 641194749}
   discSpeed: 18
   discSpeedDif: 2
