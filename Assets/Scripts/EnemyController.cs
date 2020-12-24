@@ -243,6 +243,7 @@ public class EnemyController : MonoBehaviour
             // To indicate that the disc was last caught by the Enemy
             Disc.tag = "Enemy Disc";
             Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.enemyMaterial;
+            Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.enemyMaterial;
 
             // To reposition the disc on collision
             GameManager.singleton.lastEnemyPos = transform.position;

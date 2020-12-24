@@ -192,6 +192,7 @@ public class PlayerController : MonoBehaviour
             // To indicate that the disc was last caught by the Player
             Disc.tag = "Player Disc";
             Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.playerMaterial;
+            Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.playerMaterial;
 
             // To reposition the disc on collision
             GameManager.singleton.lastPlayerPos = transform.position;
