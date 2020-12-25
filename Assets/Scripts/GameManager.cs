@@ -99,10 +99,10 @@ public class GameManager : MonoBehaviour
     private int currentSceneInt;
     private AsyncOperation sceneLoader;
 
-    [Header("Pause Menu")]
+    [Header("Menus")]
     public GameObject pauseMenu;
-
     public Slider sensitivitySlider;
+    public GameObject gameLostMenu;
 
     [Header("Debug")]
     public TextMeshProUGUI debugText;
@@ -131,24 +131,26 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         debugText.text =
-                          //  "Game Started: " + GameStarted + "\n" +
-                          //   "Player Disc Caught: " + PlayerDiscCaught + "\n" +
-                          //   "Player Reposition Disc: " + PlayerRepositionDisc + "\n" +
-                          //   "Disc Collided Once: " + DiscCollidedOnce + "\n" +
-                          //   "Enemy Disc Caught: " + EnemyDiscCaught + "\n" +
-                          //   "Enemy Reposition Disc: " + EnemyRepositionDisc + "\n" +
-                          //  "Game Ended: " + GameEnded + "\n" +
-                          //  "Enemy State: " + enemyState + "\n" +
-                          //  "Enemy Dest Size: " + GameObject.FindGameObjectsWithTag("Enemy Dest").Length + "\n" +
-                          //  "Enemy Positions Length: " + enemyPositions.Length + "\n" +
-                          //  "Enemy Position 0: " + enemyPositions[0].transform.position + "\n" +
-                          "Scene Counter: " + sceneCounter + "\n" +
-                          "Next Scene Int: " + nextSceneInt + "\n" +
-                          "Temp Next Scene Int: " + tempNextSceneInt + "\n" +
-                          "Current Scene Int: " + currentSceneInt + "\n" +
-                          //  "Bounce Count: " + bounceCount + "\n"
-                          "Player Drag Speed: " + playerDragSpeed + "\n"
-                         ;
+                        // "Game Started: " + GameStarted + "\n" +
+                        // "Game Ended: " + GameEnded + "\n" +
+                        // "Game Paused: " + GamePaused + "\n" +
+                        // "Player Disc Caught: " + PlayerDiscCaught + "\n" +
+                        //   "Player Reposition Disc: " + PlayerRepositionDisc + "\n" +
+                        // "Disc Collided Once: " + DiscCollidedOnce + "\n" +
+                        // "Enemy Disc Caught: " + EnemyDiscCaught + "\n" +
+                        "Time Scale: " + Time.timeScale + "\n" +
+                        //   "Enemy Reposition Disc: " + EnemyRepositionDisc + "\n" +
+                        //  "Enemy State: " + enemyState + "\n" +
+                        //  "Enemy Dest Size: " + GameObject.FindGameObjectsWithTag("Enemy Dest").Length + "\n" +
+                        //  "Enemy Positions Length: " + enemyPositions.Length + "\n" +
+                        //  "Enemy Position 0: " + enemyPositions[0].transform.position + "\n" +
+                        // "Scene Counter: " + sceneCounter + "\n" +
+                        // "Next Scene Int: " + nextSceneInt + "\n" +
+                        // "Temp Next Scene Int: " + tempNextSceneInt + "\n" +
+                        // "Current Scene Int: " + currentSceneInt + "\n" +
+                        //  "Bounce Count: " + bounceCount + "\n"
+                        "Player Drag Speed: " + playerDragSpeed + "\n"
+                        ;
 
         // Camera Transition before Starting the Game
         if (camStartTransition)
@@ -202,7 +204,6 @@ public class GameManager : MonoBehaviour
 
         if (GamePaused)
             StopTime();
-
         else
             StartTime();
     }
@@ -227,7 +228,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Game Lost");
+            gameLostMenu.SetActive(true);
+            StopTime();
         }
     }
 
@@ -369,8 +371,10 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Base Scene");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Base Scene");
+        SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
+
+        StartTime();
     }
 
     public void QuitGame()
