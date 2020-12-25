@@ -229,30 +229,28 @@ public class GameManager : MonoBehaviour
     private void LoadNextScene()
     {
         if (sceneCounter != 0)
-        {
             sceneLoader.allowSceneActivation = true;
-        }
 
         currentSceneInt = nextSceneInt;
 
         GameEnded = false;
 
-        // To Assign the Game Object's Materials according to their tag
+        // To Initialise the Game Object's Materials according to their tag
         InitialiseGameObjMaterials();
 
-        // To Assign the Active Disc as the Disc for the Scene
+        // To Initialise the Active Disc as the Disc for the Scene
         InitialiseSceneDisc();
 
+        // To Initialise the Active Disc as the Player for the Scene
         InitialiseScenePlayer();
 
         // To Initialise the Active Enemy Positions for the Scene
         InitialiseSceneEnemyPositions();
 
-        // Determining the next scene's number
+        // To Determine the next scene's number
         if (sceneCounter < 4)
         {
             sceneCounter++;
-
             nextSceneInt = sceneCounter;
 
             BackgroundLoadNextScene();
@@ -264,9 +262,8 @@ public class GameManager : MonoBehaviour
                 tempNextSceneInt = Random.Range(0, 5);
             } while (tempNextSceneInt == currentSceneInt);
 
-            nextSceneInt = tempNextSceneInt;
-
             sceneCounter++;
+            nextSceneInt = tempNextSceneInt;
 
             BackgroundLoadNextScene();
         }
@@ -310,6 +307,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void InitialiseScenePlayer()
+    {
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+            Player = GameObject.FindGameObjectWithTag("Player");
+
+        Player.transform.position = playerStartingPos;
+        launchIndicator.SetActive(true);
+    }
+
+    private void InitialiseSceneEnemyPositions()
+    {
+        enemyPositions = GameObject.FindGameObjectsWithTag("Enemy Position");
+    }
+
+    private void LevelProgress()
+    {
+        if (GameObject.FindGameObjectsWithTag("Enemy Dest").Length == 0)
+            EndGame(true);
+        if (GameObject.FindGameObjectsWithTag("Player Dest").Length == 0)
+            EndGame(false);
+    }
+
     private void ShowDestroyedDisc()
     {
         // To only break the disc if the game ended
@@ -331,28 +350,6 @@ public class GameManager : MonoBehaviour
 
             Destroy(discBroken, GameManager.singleton.destBrokenDelay);
         }
-    }
-
-    private void InitialiseScenePlayer()
-    {
-        if (GameObject.FindGameObjectWithTag("Player") != null)
-            Player = GameObject.FindGameObjectWithTag("Player");
-
-        Player.transform.position = playerStartingPos;
-        launchIndicator.SetActive(true);
-    }
-
-    private void InitialiseSceneEnemyPositions()
-    {
-        enemyPositions = GameObject.FindGameObjectsWithTag("Enemy Position");
-    }
-
-    private void LevelProgress()
-    {
-        if (GameObject.FindGameObjectsWithTag("Enemy Dest").Length == 0)
-            EndGame(true);
-        if (GameObject.FindGameObjectsWithTag("Player Dest").Length == 0)
-            EndGame(false);
     }
 
     // private void StopTime()
