@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Animator playerAnimator;
     private Vector2 lastMousePos;
 
-    public GameObject LaunchIndicator;
+    public GameObject launchIndicator;
     private Vector3 discRepositionedPos;
 
     void Awake()
@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
             GameManager.singleton.SetDiscCollidedOnce(false);
             GameManager.singleton.SetPlayerRepositionDisc(false);
             GameManager.singleton.bounceCount = 0;
-            LaunchIndicator.gameObject.SetActive(false);
+            launchIndicator.gameObject.SetActive(false);
         }
     }
 
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour
 
             // To indicate that the Player Caught the Disc
             GameManager.singleton.SetPlayerDiscCaught(true);
-            LaunchIndicator.gameObject.SetActive(true);
+            launchIndicator.gameObject.SetActive(true);
 
             // To Stop the Disc on Collision with the Player
             GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity = Vector3.zero;

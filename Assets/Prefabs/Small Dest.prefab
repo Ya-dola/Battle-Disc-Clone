@@ -113,7 +113,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &1223798400781418646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,5 +126,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7756a8567ea9f3e4e8a4b6dc3ad009ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Disc: {fileID: 0}
   DestBrokenPrefab: {fileID: 4770383962370115286, guid: f0feb071e84a31e4f8d302fbbb688b3b, type: 3}

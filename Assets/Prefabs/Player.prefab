@@ -6588,7 +6588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2529ac8e2d843b458ed2ff770ae7048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LaunchIndicator: {fileID: 440266444186020571}
+  launchIndicator: {fileID: 440266444186020571}
 --- !u!1 &7757503563362856069
 GameObject:
   m_ObjectHideFlags: 0
