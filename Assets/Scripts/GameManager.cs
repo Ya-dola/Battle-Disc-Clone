@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
     public bool GameStarted { get; private set; }
     public bool GameEnded { get; private set; }
     public bool GamePaused { get; private set; }
-    
+
     public bool PlayerDiscCaught { get; private set; }
     public bool EnemyDiscCaught { get; private set; }
     public bool DiscCollidedOnce { get; private set; }
@@ -101,6 +102,8 @@ public class GameManager : MonoBehaviour
     [Header("Pause Menu")]
     public GameObject pauseMenu;
 
+    public Slider sensitivitySlider;
+
     [Header("Debug")]
     public TextMeshProUGUI debugText;
 
@@ -119,6 +122,7 @@ public class GameManager : MonoBehaviour
         // Setting Default Values
         camStartTransition = false;
         sceneCounter = 0;
+        sensitivitySlider.value = playerDragSpeed;
 
         LoadNextScene();
     }
@@ -128,21 +132,22 @@ public class GameManager : MonoBehaviour
     {
         debugText.text =
                           //  "Game Started: " + GameStarted + "\n" +
-                          "Player Disc Caught: " + PlayerDiscCaught + "\n" +
-                          "Player Reposition Disc: " + PlayerRepositionDisc + "\n" +
-                          "Disc Collided Once: " + DiscCollidedOnce + "\n" +
-                          "Enemy Disc Caught: " + EnemyDiscCaught + "\n" +
-                          "Enemy Reposition Disc: " + EnemyRepositionDisc + "\n"
-                         //  "Game Ended: " + GameEnded + "\n" +
-                         //  "Enemy State: " + enemyState + "\n" +
-                         //  "Enemy Dest Size: " + GameObject.FindGameObjectsWithTag("Enemy Dest").Length + "\n" +
-                         //  "Enemy Positions Length: " + enemyPositions.Length + "\n" +
-                         //  "Enemy Position 0: " + enemyPositions[0].transform.position + "\n" +
-                         //  "Scene Counter: " + sceneCounter + "\n" +
-                         //  "Next Scene Int: " + nextSceneInt + "\n" +
-                         //  "Temp Next Scene Int: " + tempNextSceneInt + "\n" +
-                         //  "Current Scene Int: " + currentSceneInt + "\n"
-                         //  "Bounce Count: " + bounceCount + "\n"
+                          //   "Player Disc Caught: " + PlayerDiscCaught + "\n" +
+                          //   "Player Reposition Disc: " + PlayerRepositionDisc + "\n" +
+                          //   "Disc Collided Once: " + DiscCollidedOnce + "\n" +
+                          //   "Enemy Disc Caught: " + EnemyDiscCaught + "\n" +
+                          //   "Enemy Reposition Disc: " + EnemyRepositionDisc + "\n" +
+                          //  "Game Ended: " + GameEnded + "\n" +
+                          //  "Enemy State: " + enemyState + "\n" +
+                          //  "Enemy Dest Size: " + GameObject.FindGameObjectsWithTag("Enemy Dest").Length + "\n" +
+                          //  "Enemy Positions Length: " + enemyPositions.Length + "\n" +
+                          //  "Enemy Position 0: " + enemyPositions[0].transform.position + "\n" +
+                          "Scene Counter: " + sceneCounter + "\n" +
+                          "Next Scene Int: " + nextSceneInt + "\n" +
+                          "Temp Next Scene Int: " + tempNextSceneInt + "\n" +
+                          "Current Scene Int: " + currentSceneInt + "\n" +
+                          //  "Bounce Count: " + bounceCount + "\n"
+                          "Player Drag Speed: " + playerDragSpeed + "\n"
                          ;
 
         // Camera Transition before Starting the Game
@@ -159,6 +164,9 @@ public class GameManager : MonoBehaviour
                 StartGame();
             }
         }
+
+        // To Update the sensitivity of Player's Drag Speed
+        playerDragSpeed = sensitivitySlider.value;
 
         // To check if the current level has finished
         if (!GameEnded)
