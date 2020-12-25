@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     [Range(0, 48f)]
     public float discSpeed;
     [Range(0, 12f)]
-    public float discSpeedDif;
+    public float discSpeedDiff;
     public float discRepositionTime;
     public int bounceRandIterator;
     [Range(0, 1)]

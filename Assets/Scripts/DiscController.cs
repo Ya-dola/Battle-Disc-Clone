@@ -23,7 +23,7 @@ public class DiscController : MonoBehaviour
         // To ensure the disc always moves at a constant speed when not caught
         if (!GameManager.singleton.PlayerDiscCaught &
             !GameManager.singleton.EnemyDiscCaught &
-            discRigBody.velocity.magnitude < GameManager.singleton.discSpeed - GameManager.singleton.discSpeedDif)
+            discRigBody.velocity.magnitude < GameManager.singleton.discSpeed - GameManager.singleton.discSpeedDiff)
         {
             if (transform.position.z < 0)
                 discRigBody.velocity = new Vector3(Random.Range(-1f, 1f), 0, 1).normalized * GameManager.singleton.discSpeed;
