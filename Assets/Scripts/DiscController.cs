@@ -16,8 +16,8 @@ public class DiscController : MonoBehaviour
     // Fixed Update used mainly for Physics Calculations
     void FixedUpdate()
     {
-        // To work only when the Game has started
-        if (!GameManager.singleton.GameStarted)
+        // To work only when the Game has started or has not ended or is not paused
+        if (!GameManager.singleton.GameStarted || GameManager.singleton.GameEnded || GameManager.singleton.GamePaused)
             return;
 
         // To ensure the disc always moves at a constant speed when not caught by the Player or Enemy
@@ -55,7 +55,7 @@ public class DiscController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // To work only when the Game has started
-        if (!GameManager.singleton.GameStarted)
+        if (!GameManager.singleton.GameStarted || GameManager.singleton.GameEnded)
             return;
 
         // To bounce when the disc collides with anything other than the Player

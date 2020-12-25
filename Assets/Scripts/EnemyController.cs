@@ -42,8 +42,8 @@ public class EnemyController : MonoBehaviour
         // To perform Updates on which animation should be playing for the Enemy
         AnimationUpdates();
 
-        // To work only when the Game has started
-        if (!GameManager.singleton.GameStarted)
+        // To work only when the Game has started or has not ended or is not paused
+        if (!GameManager.singleton.GameStarted || GameManager.singleton.GameEnded || GameManager.singleton.GamePaused)
             return;
 
         // Enemy AI Logic with regards to movement of the enemy

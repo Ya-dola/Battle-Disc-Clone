@@ -10,9 +10,7 @@ public class GameManager : MonoBehaviour
     public bool GameStarted { get; private set; }
     public bool GameEnded { get; private set; }
     public bool GamePaused { get; private set; }
-    // public bool GameWon { get; private set; }
-    // public bool GameLost { get; private set; }
-
+    
     public bool PlayerDiscCaught { get; private set; }
     public bool EnemyDiscCaught { get; private set; }
     public bool DiscCollidedOnce { get; private set; }
@@ -100,6 +98,9 @@ public class GameManager : MonoBehaviour
     private int currentSceneInt;
     private AsyncOperation sceneLoader;
 
+    [Header("Pause Menu")]
+    public GameObject pauseMenu;
+
     [Header("Debug")]
     public TextMeshProUGUI debugText;
 
@@ -160,7 +161,8 @@ public class GameManager : MonoBehaviour
         }
 
         // To check if the current level has finished
-        LevelProgress();
+        if (!GameEnded)
+            LevelProgress();
     }
 
     public void StartCameraTransition()
@@ -188,22 +190,13 @@ public class GameManager : MonoBehaviour
     {
         GamePaused = !GamePaused;
 
-        // pauseMenu.SetActive(GamePaused);
+        pauseMenu.SetActive(GamePaused);
 
-        // if (GamePaused)
-        // {
-        //     StopTime();
+        if (GamePaused)
+            StopTime();
 
-        //     // Pauses Player Running Sound in the background
-        //     // playerController.playerRunningAudioSource.Pause();
-        // }
-        // else
-        // {
-        //     StartTime();
-
-        //     // Plays Player Running Sound in the background
-        //     // playerController.playerRunningAudioSource.Play();
-        // }
+        else
+            StartTime();
     }
 
     private void EndGame(bool gameWon)
@@ -223,6 +216,10 @@ public class GameManager : MonoBehaviour
 
             // Display Next Loaded Scene
             LoadNextScene();
+        }
+        else
+        {
+            Debug.Log("Game Lost");
         }
     }
 
@@ -352,15 +349,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // private void StopTime()
-    // {
-    //     Time.timeScale = 0f;
-    // }
+    private void StopTime()
+    {
+        Time.timeScale = 0f;
+    }
 
-    // private void StartTime()
-    // {
-    //     Time.timeScale = 1f;
-    // }
+    private void StartTime()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Base Scene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
+    }
+
+    public void QuitGame()
+    {
+        // Written to show as Application.Quit doesnt do anything in Editor
+        // Debug.Log("Quit the Game !!!");
+
+        Application.Quit();
+    }
 
     // Setters
     public void SetPlayerDiscCaught(bool status)
