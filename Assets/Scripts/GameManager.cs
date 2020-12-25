@@ -86,6 +86,11 @@ public class GameManager : MonoBehaviour
     public float destExplosionRadius;
     public float destExplosionUpwardsMod;
 
+    public AudioClip destBrokenSound;
+
+    [Range(0, 1)]
+    public float destBrokenSoundVolume;
+
     [Header("Materials")]
     public Material playerMaterial;
     public Material[] enemyMaterials;

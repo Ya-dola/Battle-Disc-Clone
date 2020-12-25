@@ -224,6 +224,8 @@ MonoBehaviour:
   destExplosionForce: 350
   destExplosionRadius: 6
   destExplosionUpwardsMod: 4
+  destBrokenSound: {fileID: 8300000, guid: 25a5aada2e8ccd2499cf0a6c67e7a263, type: 3}
+  destBrokenSoundVolume: 0.125
   playerMaterial: {fileID: 2100000, guid: dfedec611a271b74f9b82f63ee495c36, type: 2}
   enemyMaterials:
   - {fileID: 2100000, guid: 3dda6763b6e67604a831f82bf077fbc6, type: 2}

@@ -45,6 +45,11 @@ public class DestructableController : MonoBehaviour
 
             Destroy(gameObject);
 
+            // Plays the sound between the Camera's position and the Destructables's position
+            AudioSource.PlayClipAtPoint(GameManager.singleton.destBrokenSound,
+                                        0.9f * Camera.main.transform.position + 0.1f * transform.position,
+                                        GameManager.singleton.destBrokenSoundVolume);
+
             Destroy(destBroken, GameManager.singleton.destBrokenDelay);
         }
     }
