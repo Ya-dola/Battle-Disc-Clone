@@ -199,7 +199,7 @@ MonoBehaviour:
   playerDragSpeed: 0.025
   playerStartingPos: {x: 0, y: 0, z: -4.5}
   launchIndicator: {fileID: 1271657596}
-  enemyMoveSpeed: 3
+  enemyMoveSpeed: 3.25
   enemyLaunchVariance: 2.75
   enemyIdleTime: 1.5
   enemyLaunchDelayTime: 0.5
@@ -210,7 +210,7 @@ MonoBehaviour:
   discStartingPos: {x: 0, y: 0, z: -6.5}
   discSpeed: 24
   discSpeedDiff: 2
-  discRepositionTime: 0.6
+  discRepositionSpeed: 2
   bounceRandIterator: 4
   bounceBias: 1
   discRepositionZDistance: 1
@@ -220,7 +220,7 @@ MonoBehaviour:
   sideEdgeDistance: 5
   topBotEdgeDistance: 8.25
   topBotCenterDistance: 1.75
-  destBrokenDelay: 3
+  destBrokenDelay: 2
   destExplosionForce: 350
   destExplosionRadius: 6
   destExplosionUpwardsMod: 4
@@ -514,7 +514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4112862479119337943, guid: 2e4778bafd4c7bd45b97bcb06bd532be, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7395099318807196112, guid: 2e4778bafd4c7bd45b97bcb06bd532be, type: 3}
       propertyPath: Disc
@@ -1262,10 +1262,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6969573502692929678, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8139072084600114145, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2210,7 +2206,7 @@ Transform:
   - {fileID: 271104894}
   - {fileID: 678770242}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1670751942
 GameObject:
@@ -2535,7 +2531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2121095232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2609,7 +2605,7 @@ RectTransform:
   m_Children:
   - {fileID: 1615034936}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -20,9 +20,11 @@ public class DiscController : MonoBehaviour
         if (!GameManager.singleton.GameStarted)
             return;
 
-        // To ensure the disc always moves at a constant speed when not caught
+        // To ensure the disc always moves at a constant speed when not caught by the Player or Enemy
         if (!GameManager.singleton.PlayerDiscCaught &
+            !GameManager.singleton.PlayerRepositionDisc &
             !GameManager.singleton.EnemyDiscCaught &
+            !GameManager.singleton.EnemyRepositionDisc &
             discRigBody.velocity.magnitude < GameManager.singleton.discSpeed - GameManager.singleton.discSpeedDiff)
         {
             if (transform.position.z < 0)
@@ -30,6 +32,10 @@ public class DiscController : MonoBehaviour
             else
                 discRigBody.velocity = new Vector3(Random.Range(-1f, 1f), 0, -1).normalized * GameManager.singleton.discSpeed;
         }
+
+        // To ensure the disc stops when it is caught by the Player or Enemy
+        if (GameManager.singleton.PlayerDiscCaught | GameManager.singleton.EnemyDiscCaught)
+            discRigBody.velocity = Vector3.zero;
     }
 
     // Update is called once per frame

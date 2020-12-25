@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     public float discSpeed;
     [Range(0, 12f)]
     public float discSpeedDiff;
-    public float discRepositionTime;
+    public float discRepositionSpeed;
     public int bounceRandIterator;
     [Range(0, 1)]
     public float bounceBias;
@@ -126,21 +126,21 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         debugText.text =
-                         //  "Game Started: " + GameStarted + "\n" +
-                         //  "Player Disc Caught: " + PlayerDiscCaught + "\n" +
-                         //  "Player Reposition Disc: " + PlayerRepositionDisc + "\n" +
-                         //  "Disc Collided Once: " + DiscCollidedOnce + "\n" +
-                         //  "Enemy Disc Caught: " + EnemyDiscCaught + "\n" +
-                         //  "Enemy Reposition Disc: " + EnemyRepositionDisc + "\n" +
+                          //  "Game Started: " + GameStarted + "\n" +
+                          "Player Disc Caught: " + PlayerDiscCaught + "\n" +
+                          "Player Reposition Disc: " + PlayerRepositionDisc + "\n" +
+                          "Disc Collided Once: " + DiscCollidedOnce + "\n" +
+                          "Enemy Disc Caught: " + EnemyDiscCaught + "\n" +
+                          "Enemy Reposition Disc: " + EnemyRepositionDisc + "\n"
                          //  "Game Ended: " + GameEnded + "\n" +
-                         "Enemy State: " + enemyState + "\n" +
-                         "Enemy Dest Size: " + GameObject.FindGameObjectsWithTag("Enemy Dest").Length + "\n" +
+                         //  "Enemy State: " + enemyState + "\n" +
+                         //  "Enemy Dest Size: " + GameObject.FindGameObjectsWithTag("Enemy Dest").Length + "\n" +
                          //  "Enemy Positions Length: " + enemyPositions.Length + "\n" +
                          //  "Enemy Position 0: " + enemyPositions[0].transform.position + "\n" +
-                         "Scene Counter: " + sceneCounter + "\n" +
-                         "Next Scene Int: " + nextSceneInt + "\n" +
-                         "Temp Next Scene Int: " + tempNextSceneInt + "\n" +
-                         "Current Scene Int: " + currentSceneInt + "\n"
+                         //  "Scene Counter: " + sceneCounter + "\n" +
+                         //  "Next Scene Int: " + nextSceneInt + "\n" +
+                         //  "Temp Next Scene Int: " + tempNextSceneInt + "\n" +
+                         //  "Current Scene Int: " + currentSceneInt + "\n"
                          //  "Bounce Count: " + bounceCount + "\n"
                          ;
 

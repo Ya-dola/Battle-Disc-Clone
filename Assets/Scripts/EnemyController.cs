@@ -245,7 +245,7 @@ public class EnemyController : MonoBehaviour
             GameManager.singleton.Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.enemyMaterial;
             GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.enemyMaterial;
 
-            // To reposition the disc on collision
+            // To reposition the disc on collision with the Enemy
             GameManager.singleton.lastEnemyPos = transform.position;
 
             // To reposition the disc
@@ -263,7 +263,7 @@ public class EnemyController : MonoBehaviour
         // To reposition the Disc behind the Enemy when Caught
         GameManager.singleton.Disc.transform.position = Vector3.Lerp(GameManager.singleton.Disc.transform.position,
                                                                      discRepositionedPos,
-                                                                     GameManager.singleton.discRepositionTime * Time.fixedDeltaTime);
+                                                                     GameManager.singleton.discRepositionSpeed * Time.fixedDeltaTime);
 
         // To indicate the disc has repositioned
         if (GameManager.singleton.Disc.transform.position == discRepositionedPos)
