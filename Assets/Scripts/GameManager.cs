@@ -122,6 +122,9 @@ public class GameManager : MonoBehaviour
             singleton = this;
         else if (singleton != this)
             Destroy(gameObject);
+
+        // To Start Level 1 as the Base Scene Loads
+        SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
     }
 
     // Start is called before the first frame update
@@ -260,7 +263,6 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("Base Scene");
-        SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
 
         StartTime();
     }
