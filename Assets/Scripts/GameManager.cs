@@ -105,9 +105,11 @@ public class GameManager : MonoBehaviour
     private AsyncOperation sceneLoader;
 
     [Header("Menus")]
+    public GameObject slideToMoveTMP;
     public GameObject pauseMenu;
     public Slider sensitivitySlider;
     public GameObject gameLostMenu;
+    public GameObject pauseButton;
 
     [Header("Debug")]
     public TextMeshProUGUI debugText;
@@ -175,6 +177,9 @@ public class GameManager : MonoBehaviour
         // To Update the sensitivity of Player's Drag Speed
         playerDragSpeed = sensitivitySlider.value;
 
+        // To Control the Visibility of some UI Elements
+        UiElementsVisibility();
+
         // To check if the current level has finished
         if (!GameEnded)
             LevelProgress();
@@ -236,6 +241,32 @@ public class GameManager : MonoBehaviour
             gameLostMenu.SetActive(true);
             StopTime();
         }
+    }
+
+    private void StopTime()
+    {
+        Time.timeScale = 0f;
+    }
+
+    private void StartTime()
+    {
+        Time.timeScale = 1f;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("Base Scene");
+        SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
+
+        StartTime();
+    }
+
+    public void QuitGame()
+    {
+        // Written to show as Application.Quit doesnt do anything in Editor
+        // Debug.Log("Quit the Game !!!");
+
+        Application.Quit();
     }
 
     private void LoadNextScene()
@@ -364,30 +395,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void StopTime()
+    private void UiElementsVisibility()
     {
-        Time.timeScale = 0f;
-    }
+        // To Hide the Slide to Move Text if not at the Starting Scene
+        if (sceneCounter > 1 || GameStarted)
+            slideToMoveTMP.SetActive(false);
 
-    private void StartTime()
-    {
-        Time.timeScale = 1f;
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene("Base Scene");
-        SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
-
-        StartTime();
-    }
-
-    public void QuitGame()
-    {
-        // Written to show as Application.Quit doesnt do anything in Editor
-        // Debug.Log("Quit the Game !!!");
-
-        Application.Quit();
+        // To Hide the Pause Button when the Game is Paused or Lost
+        if (pauseMenu.activeSelf || gameLostMenu.activeSelf)
+            pauseButton.SetActive(false);
+        else if (GameStarted)
+            pauseButton.SetActive(true);
     }
 
     // Setters
