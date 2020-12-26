@@ -964,7 +964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &395038089
 Transform:
   m_ObjectHideFlags: 0
@@ -1192,11 +1192,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4187161196501892437, guid: 1438d7228c70c5c44a2733a620286be8, type: 3}
       propertyPath: m_Name
-      value: Long Dest (10)
+      value: Test Dest
       objectReference: {fileID: 0}
     - target: {fileID: 4187161196501892437, guid: 1438d7228c70c5c44a2733a620286be8, type: 3}
       propertyPath: m_TagString
       value: Player Dest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187161196501892437, guid: 1438d7228c70c5c44a2733a620286be8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1438d7228c70c5c44a2733a620286be8, type: 3}
