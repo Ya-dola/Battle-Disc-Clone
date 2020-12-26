@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c7a682efb83ed4584f09f91319a97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDragSpeed: 0.025
+  playerDragSpeed: 0.0125
   playerStartingPos: {x: 0, y: 0, z: -4.5}
   launchIndicator: {fileID: 1271657596}
   enemyMoveSpeed: 3.25
