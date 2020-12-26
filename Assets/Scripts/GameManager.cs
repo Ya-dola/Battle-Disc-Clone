@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Menus")]
     public GameObject slideToMoveTMP;
+    public TextMeshProUGUI levelText;
     public GameObject pauseMenu;
     public Slider sensitivitySlider;
     public GameObject gameLostMenu;
@@ -176,6 +177,9 @@ public class GameManager : MonoBehaviour
 
         // To Update the sensitivity of Player's Drag Speed
         playerDragSpeed = sensitivitySlider.value;
+
+        // To Update the level indicator text with the corresponding level
+        levelText.text = "Level " + sceneCounter;
 
         // To Control the Visibility of some UI Elements
         UiElementsVisibility();
@@ -401,11 +405,17 @@ public class GameManager : MonoBehaviour
         if (sceneCounter > 1 || GameStarted)
             slideToMoveTMP.SetActive(false);
 
-        // To Hide the Pause Button when the Game is Paused or Lost
+        // To Hide the Pause Button and Level Indicator Text when the Game is Paused or Lost
         if (pauseMenu.activeSelf || gameLostMenu.activeSelf)
+        {
             pauseButton.SetActive(false);
+            levelText.gameObject.SetActive(false);
+        }
         else if (GameStarted)
+        {
             pauseButton.SetActive(true);
+            levelText.gameObject.SetActive(true);
+        }
     }
 
     // Setters
