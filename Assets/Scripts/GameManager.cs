@@ -125,6 +125,13 @@ public class GameManager : MonoBehaviour
 
         // To Start Level 1 as the Base Scene Loads
         SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
+
+        // To cap the Unity Game View Frame Rate
+#if UNITY_EDITOR
+        // VSync must be disabled
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 120;
+#endif
     }
 
     // Start is called before the first frame update
