@@ -309,6 +309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Disc Collision Fade
       objectReference: {fileID: 0}
+    - target: {fileID: 177555639826044224, guid: cbdcf4ba877d72745976c3d38e68d492, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 177555639826044225, guid: cbdcf4ba877d72745976c3d38e68d492, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -409,6 +413,10 @@ PrefabInstance:
     - target: {fileID: 2746448923647264606, guid: 3520e10cac635f4428924cd41ec07fc1, type: 3}
       propertyPath: m_Name
       value: Disc Fade
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746448923647264606, guid: 3520e10cac635f4428924cd41ec07fc1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3520e10cac635f4428924cd41ec07fc1, type: 3}

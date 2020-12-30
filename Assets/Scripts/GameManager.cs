@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     [Range(0, 0.05f)]
     public float playerDragSpeed;
     public Vector3 lastPlayerPos { get; set; }
-
     public Vector3 playerStartingPos;
     public GameObject Player { get; set; }
     public GameObject launchIndicator;
@@ -53,7 +52,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Disc")]
     public GameObject discPrefab;
-
     public GameObject discBrokenPrefab;
     public Vector3 discStartingPos;
     public GameObject Disc { get; set; }
@@ -62,12 +60,16 @@ public class GameManager : MonoBehaviour
     [Range(0, 12f)]
     public float discSpeedDiff;
     public float discRepositionSpeed;
+    [Range(0.4f, 1f)]
+    public float discRepositionZDistance;
+    public GameObject discFadePrefab;
+    public float discFadeDestDelay;
+    public GameObject discCollisionFadePrefab;
+    public float discColFadeDestDelay;
     public int bounceRandIterator;
     [Range(0, 1)]
     public float bounceBias;
     public int bounceCount { get; set; }
-    [Range(0.4f, 1f)]
-    public float discRepositionZDistance;
 
     [Header("Camera")]
     public float camFovStart;
@@ -126,7 +128,7 @@ public class GameManager : MonoBehaviour
         // To Start Level 1 as the Base Scene Loads
         SceneManager.LoadScene("Level 1", LoadSceneMode.Additive);
 
-        // To cap the Unity Game View Frame Rate
+        // To cap the Unity Game View Frame Rate when Maximized
 #if UNITY_EDITOR
         // VSync must be disabled
         QualitySettings.vSyncCount = 0;

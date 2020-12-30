@@ -58,8 +58,8 @@ public class DiscController : MonoBehaviour
         if (!GameManager.singleton.GameStarted || GameManager.singleton.GameEnded)
             return;
 
-        // To bounce when the disc collides with anything other than the Player
-        if (collision.gameObject.tag != "Player")
+        // To bounce when the disc collides with anything other than the Player or Enemy
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Enemy")
         {
             // discRigBody.velocity = Vector3.Reflect(lastDiscVelocity.normalized, collision.contacts[0].normal) *
             //                         Mathf.Max(lastDiscVelocity.magnitude, GameManager.singleton.discBounceForce);
@@ -84,6 +84,20 @@ public class DiscController : MonoBehaviour
             }
 
             discRigBody.velocity = discReflection * GameManager.singleton.discSpeed;
+
+            // To Display the Effect when the Disc Collides
+            GameObject discCollisionFade = Instantiate(GameManager.singleton.discCollisionFadePrefab,
+                                                       transform.position,
+                                                       transform.rotation);
+
+            discCollisionFade.GetComponent<Animator>().Play("Disc Collision Fade Animation");
+
+            Destroy(discCollisionFade, GameManager.singleton.discColFadeDestDelay);
         }
+    }
+
+    private void PlayDiscFade()
+    {
+
     }
 }

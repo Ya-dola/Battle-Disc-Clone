@@ -10,9 +10,8 @@ public class PlayerController : MonoBehaviour
     // private Rigidbody playerRigBody;
     private Animator playerAnimator;
     private Vector2 lastMousePos;
-
-    public GameObject launchIndicator;
     private Vector3 discRepositionedPos;
+    public GameObject launchIndicator;
 
     void Awake()
     {
