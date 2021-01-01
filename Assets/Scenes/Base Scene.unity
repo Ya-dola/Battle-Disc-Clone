@@ -213,7 +213,7 @@ MonoBehaviour:
   discRepositionSpeed: 2
   discRepositionZDistance: 1
   discFadePrefab: {fileID: 2746448923647264606, guid: 3520e10cac635f4428924cd41ec07fc1, type: 3}
-  discFadeDestDelay: 0
+  discFadeDestDelay: 0.5
   discCollisionFadePrefab: {fileID: 177555639826044224, guid: cbdcf4ba877d72745976c3d38e68d492, type: 3}
   discColFadeDestDelay: 0.5
   bounceRandIterator: 4

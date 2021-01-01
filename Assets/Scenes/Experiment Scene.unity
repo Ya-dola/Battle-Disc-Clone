@@ -370,6 +370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Launch PS
       objectReference: {fileID: 0}
+    - target: {fileID: 2499992258024248036, guid: ca363d8b0c8038944b9e1db20145d96f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2499992258024248041, guid: ca363d8b0c8038944b9e1db20145d96f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -456,15 +460,7 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2746448923647264601, guid: 3520e10cac635f4428924cd41ec07fc1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746448923647264601, guid: 3520e10cac635f4428924cd41ec07fc1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2746448923647264601, guid: 3520e10cac635f4428924cd41ec07fc1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2746448923647264606, guid: 3520e10cac635f4428924cd41ec07fc1, type: 3}

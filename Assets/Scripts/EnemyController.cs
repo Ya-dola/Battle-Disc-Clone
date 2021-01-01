@@ -210,6 +210,9 @@ public class EnemyController : MonoBehaviour
 
             GameManager.singleton.Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
+            // To Display the Effect when the Disc is Launched by the Enemy
+            GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.enemyColor);
+
             enemyAnimator.SetBool("DiscLaunched", true);
 
             // To reset disc conditions
@@ -244,6 +247,9 @@ public class EnemyController : MonoBehaviour
             GameManager.singleton.Disc.tag = "Enemy Disc";
             GameManager.singleton.Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.enemyMaterial;
             GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.enemyMaterial;
+
+            // To Display the Effect when the Disc is Caught by the Enemy
+            GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.enemyColor);
 
             // To reposition the disc on collision with the Enemy
             GameManager.singleton.lastEnemyPos = transform.position;

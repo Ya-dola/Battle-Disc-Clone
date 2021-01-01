@@ -163,10 +163,14 @@ public class PlayerController : MonoBehaviour
         // To only run when the disc is caught and has already collided once with any object besides the Player
         if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.PlayerDiscCaught)
         {
-            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - GameManager.singleton.Disc.transform.position) *
-                                                        GameManager.singleton.discSpeed;
+            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - 
+                                                                                              GameManager.singleton.Disc.transform.position) *
+                                                                            GameManager.singleton.discSpeed;
 
             GameManager.singleton.Disc.layer = LayerMask.NameToLayer("Disc Launched");
+
+            // To Display the Effect when the Disc is Launched by the Player
+            GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.playerColor);
 
             playerAnimator.SetBool("DiscLaunched", true);
 
@@ -199,6 +203,9 @@ public class PlayerController : MonoBehaviour
             GameManager.singleton.Disc.tag = "Player Disc";
             GameManager.singleton.Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.playerMaterial;
             GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.playerMaterial;
+
+            // To Display the Effect when the Disc is Caught by the Player
+            GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.playerColor);
 
             // To reposition the disc on collision with the Player
             GameManager.singleton.lastPlayerPos = transform.position;

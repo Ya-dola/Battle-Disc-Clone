@@ -95,8 +95,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Materials")]
     public Material playerMaterial;
+    public Color playerColor { get; set; }
     public Material[] enemyMaterials;
     public Material enemyMaterial { get; set; }
+    public Color enemyColor { get; set; }
 
     [Header("Level Management")]
     public string baseSceneName;
@@ -339,6 +341,10 @@ public class GameManager : MonoBehaviour
         enemyMaterial = enemyMaterials[currentSceneInt];
         // enemyMaterial = enemyMaterials[Random.Range(0, enemyMaterials.Length)];
 
+        // To get the colors of the Materials used in the round
+        playerColor = playerMaterial.color;
+        enemyColor = enemyMaterial.color;
+
         foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("Player Dest"))
             gameObj.GetComponent<Renderer>().material = playerMaterial;
 
@@ -408,6 +414,18 @@ public class GameManager : MonoBehaviour
 
             Destroy(discBroken, GameManager.singleton.destBrokenDelay);
         }
+    }
+
+    // To Display the Effect when the Disc is Caught or Launched by a Character
+    public void ShowDiscFadeEffect(Color characterColor)
+    {
+        GameObject discFade = Instantiate(discFadePrefab, Disc.transform.position, Disc.transform.rotation);
+
+        discFade.GetComponent<Animator>().Play("Disc Fade Animation");
+
+        discFade.GetComponent<SpriteRenderer>().color = characterColor;
+
+        Destroy(discFade, discFadeDestDelay);
     }
 
     private void UiElementsVisibility()

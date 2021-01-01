@@ -95,9 +95,4 @@ public class DiscController : MonoBehaviour
             Destroy(discCollisionFade, GameManager.singleton.discColFadeDestDelay);
         }
     }
-
-    private void PlayDiscFade()
-    {
-
-    }
 }
