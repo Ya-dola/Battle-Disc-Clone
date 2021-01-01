@@ -248,8 +248,9 @@ public class EnemyController : MonoBehaviour
             GameManager.singleton.Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.enemyMaterial;
             GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.enemyMaterial;
 
-            // To Display the Effect when the Disc is Caught by the Enemy
+            // To Display the Effects when the Disc is Caught by the Enemy
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.enemyColor);
+            GameManager.singleton.Disc.gameObject.GetComponentInChildren<ParticleSystem>().Play();
 
             // To reposition the disc on collision with the Enemy
             GameManager.singleton.lastEnemyPos = transform.position;

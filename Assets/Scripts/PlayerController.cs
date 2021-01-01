@@ -204,8 +204,9 @@ public class PlayerController : MonoBehaviour
             GameManager.singleton.Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.playerMaterial;
             GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.playerMaterial;
 
-            // To Display the Effect when the Disc is Caught by the Player
+            // To Display the Effects when the Disc is Caught by the Player
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.playerColor);
+            GameManager.singleton.Disc.gameObject.GetComponentInChildren<ParticleSystem>().Play();
 
             // To reposition the disc on collision with the Player
             GameManager.singleton.lastPlayerPos = transform.position;
