@@ -73,7 +73,11 @@ public class GameManager : MonoBehaviour
     public GameObject discCollisionFadePrefab;
     public float discColFadeDestDelay;
     public ParticleSystem trianglePs;
-
+    public ParticleSystem playerLaunchPs;
+    public ParticleSystem playerCharacterLaunchPs;
+    public ParticleSystem enemyLaunchPs;
+    public ParticleSystem enemyCharacterLaunchPs;
+    public float launchPsSpeed;
 
     [Header("Camera")]
     public float camFovStart;
@@ -91,7 +95,6 @@ public class GameManager : MonoBehaviour
     public float destExplosionForce;
     public float destExplosionRadius;
     public float destExplosionUpwardsMod;
-
     public AudioClip destBrokenSound;
 
     [Range(0, 1)]
@@ -150,6 +153,7 @@ public class GameManager : MonoBehaviour
         sceneCounter = 0;
         sensitivitySlider.value = playerDragSpeed;
 
+        // To load the next scene
         LoadNextScene();
     }
 

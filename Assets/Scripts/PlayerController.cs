@@ -163,14 +163,42 @@ public class PlayerController : MonoBehaviour
         // To only run when the disc is caught and has already collided once with any object besides the Player
         if (Input.GetKeyUp(KeyCode.Mouse0) && GameManager.singleton.PlayerDiscCaught)
         {
-            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position - 
-                                                                                              GameManager.singleton.Disc.transform.position) *
-                                                                            GameManager.singleton.discSpeed;
+            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity =
+                                                        Vector3.Normalize(transform.position -
+                                                                GameManager.singleton.Disc.transform.position) *
+                                                                GameManager.singleton.discSpeed;
 
             GameManager.singleton.Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
             // To Display the Effect when the Disc is Launched by the Player
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.playerColor);
+
+            // To move the Particles in the direction that the disc is launched in
+            var launchPsForce = GameManager.singleton.playerLaunchPs.forceOverLifetime;
+            var charLaunchPsForce = GameManager.singleton.playerCharacterLaunchPs.forceOverLifetime;
+            var charLaunchPsColor = GameManager.singleton.playerCharacterLaunchPs.main;
+
+            launchPsForce.x = Vector3.Normalize(transform.position -
+                                                GameManager.singleton.Disc.transform.position).x *
+                                                GameManager.singleton.launchPsSpeed;
+            launchPsForce.z = Vector3.Normalize(transform.position -
+                                                GameManager.singleton.Disc.transform.position).z *
+                                                GameManager.singleton.launchPsSpeed;
+
+            charLaunchPsForce.x = Vector3.Normalize(transform.position -
+                                                GameManager.singleton.Disc.transform.position).x *
+                                                GameManager.singleton.launchPsSpeed;
+            charLaunchPsForce.z = Vector3.Normalize(transform.position -
+                                                GameManager.singleton.Disc.transform.position).z *
+                                                GameManager.singleton.launchPsSpeed;
+
+            // To set the color of the trail for the Character Launch Particles
+            charLaunchPsColor.startColor = GameManager.singleton.playerColor;
+            GameManager.singleton.playerCharacterLaunchPs.GetComponent<ParticleSystemRenderer>().trailMaterial =
+                                                                            GameManager.singleton.playerMaterial;
+
+            GameManager.singleton.playerLaunchPs.Play();
+            GameManager.singleton.playerCharacterLaunchPs.Play();
 
             playerAnimator.SetBool("DiscLaunched", true);
 

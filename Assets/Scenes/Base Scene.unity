@@ -219,6 +219,11 @@ MonoBehaviour:
   discCollisionFadePrefab: {fileID: 177555639826044224, guid: cbdcf4ba877d72745976c3d38e68d492, type: 3}
   discColFadeDestDelay: 0.5
   trianglePs: {fileID: 952157137}
+  playerLaunchPs: {fileID: 1068204245}
+  playerCharacterLaunchPs: {fileID: 1068204244}
+  enemyLaunchPs: {fileID: 1068204247}
+  enemyCharacterLaunchPs: {fileID: 1068204246}
+  launchPsSpeed: 20
   camFovStart: 64
   camFovEnd: 54
   camFovTransitionSpeed: 8
@@ -2110,6 +2115,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 315167814503855996, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+      propertyPath: m_Name
+      value: Player Character Launch PS
+      objectReference: {fileID: 0}
+    - target: {fileID: 315167814503855998, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877313099537985828, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+      propertyPath: m_Name
+      value: Player Launch PS
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877313099537985830, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+      propertyPath: VelocityModule.x.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877313099537985830, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+      propertyPath: VelocityModule.y.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3877313099537985830, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+      propertyPath: VelocityModule.z.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8139072084600114145, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2156,6 +2185,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+--- !u!198 &1068204244 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 315167814503855998, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+  m_PrefabInstance: {fileID: 1068204243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1068204245 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3877313099537985830, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+  m_PrefabInstance: {fileID: 1068204243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1068204246 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1857564297506067735, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+  m_PrefabInstance: {fileID: 1068204243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1068204247 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6214430894204105459, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+  m_PrefabInstance: {fileID: 1068204243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1074466001
 PrefabInstance:
   m_ObjectHideFlags: 0

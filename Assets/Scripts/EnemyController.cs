@@ -204,14 +204,42 @@ public class EnemyController : MonoBehaviour
             launchTimer -= Time.fixedDeltaTime;
         else
         {
-            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity = Vector3.Normalize(transform.position -
-                                                                                              GameManager.singleton.Disc.transform.position) *
-                                                                            GameManager.singleton.discSpeed;
+            GameManager.singleton.Disc.GetComponent<Rigidbody>().velocity =
+                                                        Vector3.Normalize(transform.position -
+                                                                GameManager.singleton.Disc.transform.position) *
+                                                                GameManager.singleton.discSpeed;
 
             GameManager.singleton.Disc.layer = LayerMask.NameToLayer("Disc Launched");
 
             // To Display the Effect when the Disc is Launched by the Enemy
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.enemyColor);
+
+            // To move the Particles in the direction that the disc is launched in
+            var launchPsForce = GameManager.singleton.enemyLaunchPs.forceOverLifetime;
+            var charLaunchPsForce = GameManager.singleton.enemyCharacterLaunchPs.forceOverLifetime;
+            var charLaunchPsColor = GameManager.singleton.enemyCharacterLaunchPs.main;
+
+            launchPsForce.x = Vector3.Normalize(transform.position -
+                                                GameManager.singleton.Disc.transform.position).x *
+                                                GameManager.singleton.launchPsSpeed;
+            launchPsForce.z = Vector3.Normalize(transform.position -
+                                                GameManager.singleton.Disc.transform.position).z *
+                                                GameManager.singleton.launchPsSpeed;
+
+            charLaunchPsForce.x = Vector3.Normalize(transform.position -
+                                                GameManager.singleton.Disc.transform.position).x *
+                                                GameManager.singleton.launchPsSpeed;
+            charLaunchPsForce.z = Vector3.Normalize(transform.position -
+                                                GameManager.singleton.Disc.transform.position).z *
+                                                GameManager.singleton.launchPsSpeed;
+
+            // To set the color of the trail for the Character Launch Particles
+            charLaunchPsColor.startColor = GameManager.singleton.enemyColor;
+            GameManager.singleton.enemyCharacterLaunchPs.GetComponent<ParticleSystemRenderer>().trailMaterial =
+                                                                            GameManager.singleton.enemyMaterial;
+
+            GameManager.singleton.enemyLaunchPs.Play();
+            GameManager.singleton.enemyCharacterLaunchPs.Play();
 
             enemyAnimator.SetBool("DiscLaunched", true);
 
