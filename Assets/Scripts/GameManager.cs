@@ -62,14 +62,18 @@ public class GameManager : MonoBehaviour
     public float discRepositionSpeed;
     [Range(0.4f, 1f)]
     public float discRepositionZDistance;
-    public GameObject discFadePrefab;
-    public float discFadeDestDelay;
-    public GameObject discCollisionFadePrefab;
-    public float discColFadeDestDelay;
     public int bounceRandIterator;
     [Range(0, 1)]
     public float bounceBias;
     public int bounceCount { get; set; }
+
+    [Header("Effects")]
+    public GameObject discFadePrefab;
+    public float discFadeDestDelay;
+    public GameObject discCollisionFadePrefab;
+    public float discColFadeDestDelay;
+    public ParticleSystem trianglePs;
+
 
     [Header("Camera")]
     public float camFovStart;

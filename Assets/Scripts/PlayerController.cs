@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
             // To Display the Effects when the Disc is Caught by the Player
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.playerColor);
-            GameManager.singleton.Disc.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+            GameManager.singleton.trianglePs.Play();
 
             // To reposition the disc on collision with the Player
             GameManager.singleton.lastPlayerPos = transform.position;

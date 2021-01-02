@@ -212,12 +212,13 @@ MonoBehaviour:
   discSpeedDiff: 2
   discRepositionSpeed: 2
   discRepositionZDistance: 1
+  bounceRandIterator: 4
+  bounceBias: 1
   discFadePrefab: {fileID: 2746448923647264606, guid: 3520e10cac635f4428924cd41ec07fc1, type: 3}
   discFadeDestDelay: 0.5
   discCollisionFadePrefab: {fileID: 177555639826044224, guid: cbdcf4ba877d72745976c3d38e68d492, type: 3}
   discColFadeDestDelay: 0.5
-  bounceRandIterator: 4
-  bounceBias: 1
+  trianglePs: {fileID: 952157137}
   camFovStart: 64
   camFovEnd: 54
   camFovTransitionSpeed: 8
@@ -1737,6 +1738,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1689262538280302128, guid: 35edbaf181cf90f4f8ed10dd1133166a, type: 3}
   m_PrefabInstance: {fileID: 855128113}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &952157137 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 739261716004085678, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+  m_PrefabInstance: {fileID: 1068204243}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &957328360
 GameObject:

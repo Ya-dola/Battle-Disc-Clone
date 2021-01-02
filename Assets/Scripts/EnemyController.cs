@@ -235,6 +235,10 @@ public class EnemyController : MonoBehaviour
         // Catching the Disc
         if (collider.gameObject.Equals(GameManager.singleton.Disc))
         {
+            // To ensure that the Collision Effect does not occur more than once 
+            if (GameManager.singleton.EnemyDiscCaught)
+                return;
+
             GameManager.singleton.SetEnemyDiscCaught(true);
 
             // To Transition the Enemy to the CaughtDisc State
@@ -250,7 +254,7 @@ public class EnemyController : MonoBehaviour
 
             // To Display the Effects when the Disc is Caught by the Enemy
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.enemyColor);
-            GameManager.singleton.Disc.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+            GameManager.singleton.trianglePs.Play();
 
             // To reposition the disc on collision with the Enemy
             GameManager.singleton.lastEnemyPos = transform.position;
