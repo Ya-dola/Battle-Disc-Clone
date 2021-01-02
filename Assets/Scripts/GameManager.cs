@@ -79,8 +79,10 @@ public class GameManager : MonoBehaviour
     public ParticleSystem enemyCharacterLaunchPs;
     public float launchPsSpeed;
     public float cameraShakeAmount;
+    public float cameraShakeAmountStep { get; set; }
     public float cameraShakeDuration;
-    public float cameraShakeDurationStep;
+    public float cameraShakeDurationStep { get; set; }
+    public float cameraShakeStepFactor;
 
     [Header("Camera")]
     public float camFovStart;
@@ -157,6 +159,8 @@ public class GameManager : MonoBehaviour
         sceneCounter = 0;
         sensitivitySlider.value = playerDragSpeed;
         cameraPosition = Camera.main.transform.position;
+        cameraShakeAmountStep = cameraShakeAmount / cameraShakeStepFactor;
+        cameraShakeDurationStep = cameraShakeDuration / cameraShakeStepFactor;
 
         // To load the next scene
         LoadNextScene();
@@ -456,6 +460,7 @@ public class GameManager : MonoBehaviour
             Camera.main.transform.position = cameraPosition + (Random.insideUnitSphere * camShakeAmt);
 
             camShakeDuration -= cameraShakeDurationStep;
+            camShakeAmt -= cameraShakeAmountStep;
 
             yield return null;
         }

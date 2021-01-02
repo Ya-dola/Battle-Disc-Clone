@@ -226,7 +226,7 @@ MonoBehaviour:
   launchPsSpeed: 20
   cameraShakeAmount: 0.5
   cameraShakeDuration: 0.125
-  cameraShakeDurationStep: 0.00625
+  cameraShakeStepFactor: 40
   camFovStart: 64
   camFovEnd: 54
   camFovTransitionSpeed: 8
