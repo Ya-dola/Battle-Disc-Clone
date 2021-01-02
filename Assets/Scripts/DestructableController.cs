@@ -22,9 +22,6 @@ public class DestructableController : MonoBehaviour
         if ((GameManager.singleton.Disc.tag == "Player Disc" & gameObject.tag == "Enemy Dest") ||
             GameManager.singleton.Disc.tag == "Enemy Disc" & gameObject.tag == "Player Dest")
         {
-
-            // Debug.Log("Disc Collided with Destructable");
-
             GameObject destBroken = Instantiate(DestBrokenPrefab, transform.position, transform.rotation);
 
             for (int i = 0; i < destBroken.transform.childCount; i++)
@@ -51,6 +48,9 @@ public class DestructableController : MonoBehaviour
                                         GameManager.singleton.destBrokenSoundVolume);
 
             Destroy(destBroken, GameManager.singleton.destBrokenDelay);
+
+            // To Shake the Camera when a Destructable is Destroyed
+            GameManager.singleton.ShakeCamera(GameManager.singleton.cameraShakeDuration, GameManager.singleton.cameraShakeAmount);
         }
     }
 }

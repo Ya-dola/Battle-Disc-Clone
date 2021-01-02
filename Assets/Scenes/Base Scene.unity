@@ -224,6 +224,9 @@ MonoBehaviour:
   enemyLaunchPs: {fileID: 1068204247}
   enemyCharacterLaunchPs: {fileID: 1068204246}
   launchPsSpeed: 20
+  cameraShakeAmount: 0.5
+  cameraShakeDuration: 0.125
+  cameraShakeDurationStep: 0.00625
   camFovStart: 64
   camFovEnd: 54
   camFovTransitionSpeed: 8

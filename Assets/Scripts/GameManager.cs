@@ -78,12 +78,16 @@ public class GameManager : MonoBehaviour
     public ParticleSystem enemyLaunchPs;
     public ParticleSystem enemyCharacterLaunchPs;
     public float launchPsSpeed;
+    public float cameraShakeAmount;
+    public float cameraShakeDuration;
+    public float cameraShakeDurationStep;
 
     [Header("Camera")]
     public float camFovStart;
     public float camFovEnd;
     public float camFovTransitionSpeed;
     private bool camStartTransition;
+    private Vector3 cameraPosition;
 
     [Header("Arena")]
     public float sideEdgeDistance;
@@ -152,6 +156,7 @@ public class GameManager : MonoBehaviour
         camStartTransition = false;
         sceneCounter = 0;
         sensitivitySlider.value = playerDragSpeed;
+        cameraPosition = Camera.main.transform.position;
 
         // To load the next scene
         LoadNextScene();
@@ -434,6 +439,29 @@ public class GameManager : MonoBehaviour
         discFade.GetComponent<SpriteRenderer>().color = characterColor;
 
         Destroy(discFade, discFadeDestDelay);
+    }
+
+    // To Shake the Camera
+    public void ShakeCamera(float camShakeDuration, float camShakeAmt)
+    {
+        // To Stop Any Existing Camera Shakes
+        StopAllCoroutines();
+        StartCoroutine(ShakeCameraIEnum(camShakeDuration, camShakeAmt));
+    }
+
+    private IEnumerator ShakeCameraIEnum(float camShakeDuration, float camShakeAmt)
+    {
+        while (camShakeDuration > 0)
+        {
+            Camera.main.transform.position = cameraPosition + (Random.insideUnitSphere * camShakeAmt);
+
+            camShakeDuration -= cameraShakeDurationStep;
+
+            yield return null;
+        }
+
+        // To reset the Camera Position after Shaking the Camera
+        Camera.main.transform.position = cameraPosition;
     }
 
     private void UiElementsVisibility()
