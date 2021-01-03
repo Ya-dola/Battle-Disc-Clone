@@ -227,6 +227,7 @@ MonoBehaviour:
   cameraShakeAmount: 0.5
   cameraShakeDuration: 0.125
   cameraShakeStepFactor: 40
+  discLine: {fileID: 1068204248}
   camFovStart: 64
   camFovEnd: 54
   camFovTransitionSpeed: 8
@@ -463,6 +464,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58964044}
   m_CullTransparentMesh: 0
+--- !u!1 &93278777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1101283467853183940, guid: 2e4778bafd4c7bd45b97bcb06bd532be, type: 3}
+  m_PrefabInstance: {fileID: 377983888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &101534571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1147,6 +1153,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1689262538280302128, guid: 35edbaf181cf90f4f8ed10dd1133166a, type: 3}
   m_PrefabInstance: {fileID: 630701477}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &497167523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7631385700052191369, guid: 2f2330daf0fe2e549a5b24d89e8ca390, type: 3}
+  m_PrefabInstance: {fileID: 1835292145}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &504439498
 GameObject:
@@ -2142,6 +2153,18 @@ PrefabInstance:
       propertyPath: VelocityModule.z.minMaxState
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4936393171815371324, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402129045610708331, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 497167523}
+    - target: {fileID: 7402129045610708331, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+      propertyPath: Enemy
+      value: 
+      objectReference: {fileID: 93278777}
     - target: {fileID: 8139072084600114145, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2206,6 +2229,11 @@ ParticleSystem:
 --- !u!198 &1068204247 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6214430894204105459, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
+  m_PrefabInstance: {fileID: 1068204243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1068204248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4936393171815371324, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
   m_PrefabInstance: {fileID: 1068204243}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1074466001

@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
     public float cameraShakeDuration;
     public float cameraShakeDurationStep { get; set; }
     public float cameraShakeStepFactor;
+    public GameObject discLine;
 
     [Header("Camera")]
     public float camFovStart;

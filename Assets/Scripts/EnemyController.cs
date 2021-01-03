@@ -248,6 +248,7 @@ public class EnemyController : MonoBehaviour
             GameManager.singleton.SetDiscCollidedOnce(false);
             GameManager.singleton.SetEnemyRepositionDisc(false);
             GameManager.singleton.bounceCount = 0;
+            GameManager.singleton.discLine.SetActive(false);
 
             // To reset the Enemy CaughtDisc conditions
             launchPosDecided = false;
@@ -283,6 +284,10 @@ public class EnemyController : MonoBehaviour
             // To Display the Effects when the Disc is Caught by the Enemy
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.enemyColor);
             GameManager.singleton.trianglePs.Play();
+
+            // To Display the Disc Line
+            GameManager.singleton.discLine.SetActive(true);
+            GameManager.singleton.discLine.GetComponent<LineRenderer>().material = GameManager.singleton.enemyMaterial;
 
             // To reposition the disc on collision with the Enemy
             GameManager.singleton.lastEnemyPos = transform.position;

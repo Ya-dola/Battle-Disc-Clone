@@ -208,6 +208,7 @@ public class PlayerController : MonoBehaviour
             GameManager.singleton.SetPlayerRepositionDisc(false);
             GameManager.singleton.bounceCount = 0;
             launchIndicator.gameObject.SetActive(false);
+            GameManager.singleton.discLine.SetActive(false);
         }
     }
 
@@ -235,6 +236,10 @@ public class PlayerController : MonoBehaviour
             // To Display the Effects when the Disc is Caught by the Player
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.playerColor);
             GameManager.singleton.trianglePs.Play();
+
+            // To Display the Disc Line
+            GameManager.singleton.discLine.SetActive(true);
+            GameManager.singleton.discLine.GetComponent<LineRenderer>().material = GameManager.singleton.playerMaterial;
 
             // To reposition the disc on collision with the Player
             GameManager.singleton.lastPlayerPos = transform.position;
