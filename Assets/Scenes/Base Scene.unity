@@ -228,6 +228,9 @@ MonoBehaviour:
   cameraShakeDuration: 0.125
   cameraShakeStepFactor: 40
   discLine: {fileID: 1068204248}
+  discLineWidthInverseConst: 0.9
+  discLineMinWidth: 0.15
+  discLineMaxWidth: 0.6
   camFovStart: 64
   camFovEnd: 54
   camFovTransitionSpeed: 8

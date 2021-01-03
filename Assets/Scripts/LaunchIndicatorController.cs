@@ -13,12 +13,12 @@ public class LaunchIndicatorController : MonoBehaviour
     void Update()
     {
         // Runs only when the Indicator is active
-        if (gameObject.activeSelf)
-        {
-            indicatorDirection = Vector3.Normalize(Player.transform.position - GameManager.singleton.Disc.transform.position);
-            indicatorAngle = Mathf.Atan2(indicatorDirection.x, indicatorDirection.z) * Mathf.Rad2Deg;
+        if (!gameObject.activeSelf)
+            return;
 
-            transform.rotation = Quaternion.AngleAxis(indicatorAngle, Vector3.up);
-        }
+        indicatorDirection = Vector3.Normalize(Player.transform.position - GameManager.singleton.Disc.transform.position);
+        indicatorAngle = Mathf.Atan2(indicatorDirection.x, indicatorDirection.z) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.AngleAxis(indicatorAngle, Vector3.up);
     }
 }

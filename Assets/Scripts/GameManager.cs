@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
     public float cameraShakeDurationStep { get; set; }
     public float cameraShakeStepFactor;
     public GameObject discLine;
+    public float discLineWidthInverseConst;
+    public float discLineMinWidth;
+    public float discLineMaxWidth;
 
     [Header("Camera")]
     public float camFovStart;
@@ -240,6 +243,7 @@ public class GameManager : MonoBehaviour
         // Starting Conditions of the Disc
         SetPlayerDiscCaught(true);
         SetDiscCollidedOnce(false);
+        discLine.SetActive(true);
     }
 
     public void PauseOrResumeGame()
