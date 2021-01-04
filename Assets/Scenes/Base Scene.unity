@@ -202,13 +202,13 @@ MonoBehaviour:
   enemyMoveSpeed: 3.25
   enemyLaunchVariance: 2.75
   enemyIdleTime: 1.5
-  enemyLaunchDelayTime: 0.5
+  enemyLaunchDelayTime: 0.75
   enemyPositionRadius: 0.1
   enemyDetectionRadius: 3.5
   discPrefab: {fileID: 8914904447660003675, guid: 27023ecd3af82124d981bf8ffc8990a8, type: 3}
   discBrokenPrefab: {fileID: 2561429651018593741, guid: 43956885c9c7d6c49b2fbe540e03708c, type: 3}
   discStartingPos: {x: 0, y: 0, z: -6.5}
-  discSpeed: 24
+  discSpeed: 28
   discSpeedDiff: 2
   discRepositionSpeed: 2
   discRepositionZDistance: 1
@@ -224,13 +224,13 @@ MonoBehaviour:
   enemyLaunchPs: {fileID: 1068204247}
   enemyCharacterLaunchPs: {fileID: 1068204246}
   launchPsSpeed: 20
-  cameraShakeAmount: 0.5
-  cameraShakeDuration: 0.125
-  cameraShakeStepFactor: 40
+  cameraShakeAmount: 0.125
+  cameraShakeDuration: 0.0625
+  cameraShakeStepFactor: 60
   discLine: {fileID: 1068204248}
-  discLineWidthInverseConst: 0.9
-  discLineMinWidth: 0.15
-  discLineMaxWidth: 0.6
+  discLineWidthInverseConst: 0.75
+  discLineMinWidth: 0.14
+  discLineMaxWidth: 0.5
   camFovStart: 64
   camFovEnd: 54
   camFovTransitionSpeed: 8
