@@ -300,7 +300,7 @@ public class EnemyController : MonoBehaviour
             // To indicate that the disc was last caught by the Enemy
             GameManager.singleton.Disc.tag = "Enemy Disc";
             GameManager.singleton.Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.enemyMaterial;
-            GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.enemyMaterial;
+            GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.enemyEffectsMaterial;
 
             // To Display the Effects when the Disc is Caught by the Enemy
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.enemyColor);

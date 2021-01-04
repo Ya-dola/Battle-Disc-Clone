@@ -231,7 +231,7 @@ public class PlayerController : MonoBehaviour
             // To indicate that the disc was last caught by the Player
             GameManager.singleton.Disc.tag = "Player Disc";
             GameManager.singleton.Disc.gameObject.GetComponent<Renderer>().material = GameManager.singleton.playerMaterial;
-            GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.playerMaterial;
+            GameManager.singleton.Disc.gameObject.GetComponentInChildren<TrailRenderer>().material = GameManager.singleton.playerEffectsMaterial;
 
             // To Display the Effects when the Disc is Caught by the Player
             GameManager.singleton.ShowDiscFadeEffect(GameManager.singleton.playerColor);

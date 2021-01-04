@@ -113,9 +113,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Materials")]
     public Material playerMaterial;
+    public Material playerEffectsMaterial;
     public Color playerColor { get; set; }
     public Material[] enemyMaterials;
+    public Material[] enemyEffectsMaterials;
     public Material enemyMaterial { get; set; }
+    public Material enemyEffectsMaterial { get; set; }
     public Color enemyColor { get; set; }
 
     [Header("Level Management")]
@@ -362,7 +365,7 @@ public class GameManager : MonoBehaviour
     {
         // To choose the enemy material for the round according to the level number
         enemyMaterial = enemyMaterials[currentSceneInt];
-        // enemyMaterial = enemyMaterials[Random.Range(0, enemyMaterials.Length)];
+        enemyEffectsMaterial = enemyEffectsMaterials[currentSceneInt];
 
         // To get the colors of the Materials used in the round
         playerColor = playerMaterial.color;
