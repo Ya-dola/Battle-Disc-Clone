@@ -142,10 +142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6dc582544876e49aa5ddfe6ece3f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &1167355405778741999
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +519,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.6431373}
+      maxColor: {r: 0.81960785, g: 0.81960785, b: 0.81960785, a: 0.8235294}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
