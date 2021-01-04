@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public bool EnemyRepositionDisc { get; private set; }
 
     public Vector3 lastEnemyPos { get; set; }
+    public GameObject[] alivePlayerDests { get; set; }
 
     [Header("Player")]
     [Range(0, 0.05f)]
@@ -491,6 +492,12 @@ public class GameManager : MonoBehaviour
             pauseButton.SetActive(true);
             levelText.gameObject.SetActive(true);
         }
+    }
+
+    // To Refresh the Player Destructables that are still alive
+    public void UpdateAlivePlayerDests()
+    {
+        alivePlayerDests = GameObject.FindGameObjectsWithTag("Player Dest");
     }
 
     // Setters

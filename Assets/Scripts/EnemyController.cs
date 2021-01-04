@@ -186,10 +186,31 @@ public class EnemyController : MonoBehaviour
         if (!launchPosDecided)
         {
             // Determining the Launch Position of the Enemy
-            launchPos = new Vector3(transform.position.x + Random.Range(-GameManager.singleton.enemyLaunchVariance,
-                                                                        GameManager.singleton.enemyLaunchVariance),
-                                    transform.position.y,
-                                    transform.position.z + Random.Range(0f, -GameManager.singleton.enemyLaunchVariance));
+            if (Random.Range(0f, 1f) > 2f / 3f)
+            {
+                // Will Target an alive Player Destructable
+                GameManager.singleton.UpdateAlivePlayerDests();
+
+                var launchDirection = Vector3.Normalize(GameManager.singleton.alivePlayerDests[Random.Range(0,
+                                                        GameManager.singleton.alivePlayerDests.Length)].transform.position -
+                                                transform.position);
+
+                launchPos = new Vector3(transform.position.x + (launchDirection.x *
+                                                                Random.Range(1f,
+                                                                    GameManager.singleton.enemyLaunchVariance)),
+                                        transform.position.y,
+                                        transform.position.z + (launchDirection.z *
+                                                                Random.Range(1f,
+                                                                    GameManager.singleton.enemyLaunchVariance)));
+            }
+            else
+                // Will Launch Randomly
+                launchPos = new Vector3(transform.position.x +
+                                            Random.Range(-GameManager.singleton.enemyLaunchVariance,
+                                                GameManager.singleton.enemyLaunchVariance),
+                                        transform.position.y,
+                                        transform.position.z +
+                                            Random.Range(0f, -GameManager.singleton.enemyLaunchVariance));
 
             launchPosDecided = true;
             launchTimer = GameManager.singleton.enemyLaunchDelayTime;
