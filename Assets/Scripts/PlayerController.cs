@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     // Late Update used mainly for Camera Calculations and Calculations that need to occur after movement has occured
     // Occurs after physics is applied 
-    private void LateUpdate()
+    void LateUpdate()
     {
         // To Update the Position of the Player with the Constraints
         ConstraintPosition(gameObject, "Player");

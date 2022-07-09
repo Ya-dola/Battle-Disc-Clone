@@ -314,6 +314,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadNextScene()
     {
+        // To Load the Scene that was loaded in the background
         if (sceneCounter != 0)
             sceneLoader.allowSceneActivation = true;
 
@@ -321,13 +322,13 @@ public class GameManager : MonoBehaviour
 
         GameEnded = false;
 
-        // To Initialise the Game Object's Materials according to their tag
+        // To Initialise the Game Objects Materials according to their tag
         InitialiseGameObjMaterials();
 
         // To Initialise the Active Disc as the Disc for the Scene
         InitialiseSceneDisc();
 
-        // To Initialise the Active Disc as the Player for the Scene
+        // To Initialise the Active Player for the Scene
         InitialiseScenePlayer();
 
         // To Initialise the Active Enemy Positions for the Scene
@@ -351,10 +352,12 @@ public class GameManager : MonoBehaviour
             sceneCounter++;
             nextSceneInt = tempNextSceneInt;
 
+            // To load the next scene in the background
             BackgroundLoadNextScene();
         }
     }
 
+    // To load the next scene in the background
     private void BackgroundLoadNextScene()
     {
         sceneLoader = SceneManager.LoadSceneAsync(string.Concat(baseSceneName + " ", nextSceneInt + 1), LoadSceneMode.Additive);
